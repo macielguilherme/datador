@@ -1,0 +1,764 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BRF Tecnologia, (c) 2025</title>
+    <style>
+        /* ===== RESET E BASE ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* ===== JANELA PRINCIPAL ===== */
+        .window {
+            width: 920px;
+            background-color: #f4f4f4;
+            border: 1px solid #707070;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            transition: opacity 0.2s;
+        }
+
+        /* ===== BARRA DE TÍTULO ===== */
+        .title-bar {
+            background-color: #ffffff;
+            padding: 4px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #d0d0d0;
+            font-size: 11px;
+            color: #333;
+        }
+
+        .title-bar-controls {
+            display: flex;
+            gap: 14px;
+            font-size: 12px;
+        }
+
+        .title-bar-controls span {
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* ===== CABEÇALHO ===== */
+        .header {
+            background-color: #ffffff;
+            padding: 10px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #000;
+        }
+
+        .logo img {
+            height: 36px;
+            display: block;
+        }
+
+        .header-title {
+            font-weight: bold;
+            font-size: 15px;
+            color: #111;
+        }
+
+        /* ===== CONTEÚDO PRINCIPAL ===== */
+        .content {
+            display: flex;
+            padding: 12px 15px;
+            gap: 12px;
+            background-color: #f8f8f8;
+            min-height: 480px;
+        }
+
+        /* ===== SIDEBAR (esquerda) ===== */
+        .sidebar {
+            width: 210px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-right: 10px;
+            border-right: 2px solid #000000;
+        }
+
+        .sidebar-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #222;
+            margin-top: 2px;
+        }
+
+        .form-group-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            position: relative;
+        }
+
+        .form-group-sidebar label {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .printer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .refresh-btn {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .select-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .select-container select,
+        .select-container input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #777;
+            background: transparent;
+            padding: 3px 18px 3px 0;
+            font-size: 12px;
+            outline: none;
+            color: #222;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        .select-arrow {
+            position: absolute;
+            right: 2px;
+            bottom: 5px;
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid #555;
+            pointer-events: none;
+        }
+
+        /* ===== PAINEL DIREITO (principal) ===== */
+        .main-panel-border {
+            flex: 1;
+            border: 1px solid #666;
+            padding: 15px 25px 18px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #f8f8f8;
+        }
+
+        .panel-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 4px;
+            margin-bottom: 15px;
+        }
+
+        .main-form {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .form-group-main {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .form-group-main label {
+            font-size: 13px;
+            color: #333;
+        }
+
+        /* Checkbox com Lacre */
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 2px;
+        }
+
+        .checkbox-row input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #6236b8;
+            cursor: pointer;
+        }
+
+        .checkbox-row label {
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* ===== BOTÕES ===== */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px 0;
+            background-color: #6236b8;
+            color: white;
+            border: 1px solid #4f279e;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: background-color 0.15s ease;
+        }
+
+        .btn:hover {
+            background-color: #522aa0;
+        }
+
+        /* Botões do menu (tela 1) */
+        .menu-btn {
+            width: 100%;
+            padding: 12px 0;
+            background-color: #6236b8;
+            color: white;
+            border: 1px solid #4d2998;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+            transition: background-color 0.15s ease;
+            text-align: center;
+        }
+
+        .menu-btn:hover {
+            background-color: #532c9e;
+        }
+
+        .button-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* ===== BARRA DE STATUS ===== */
+        .status-bar {
+            background-color: #ffffff;
+            border-top: 1px solid #000;
+            padding: 4px 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #333;
+        }
+
+        /* ===== UTILITÁRIOS ===== */
+        .hidden {
+            display: none !important;
+        }
+
+        /* ===== MODAL / MENSAGEM ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .modal-box {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 6px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            max-width: 480px;
+            text-align: center;
+            border: 1px solid #aaa;
+        }
+
+        .modal-box p {
+            font-size: 15px;
+            color: #222;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .modal-box .btn {
+            width: auto;
+            padding: 8px 36px;
+            display: inline-block;
+        }
+
+        /* Info text (Datador) */
+        .info-text {
+            font-size: 10px;
+            color: #555;
+            margin-top: 2px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window" id="appWindow">
+        <!-- ===== BARRA DE TÍTULO ===== -->
+        <div class="title-bar">
+            <div>BRF Tecnologia, (c) 2025</div>
+            <div class="title-bar-controls">
+                <span>&#8212;</span>
+                <span>&#9633;</span>
+                <span>&#10005;</span>
+            </div>
+        </div>
+
+        <!-- ===== CABEÇALHO ===== -->
+        <div class="header">
+            <div class="logo">
+                <img src="https://sosdocs.com.br/wp-content/uploads/2025/01/logo-sos-docs-azul.svg" alt="SOS Docs" />
+            </div>
+            <div class="header-title">
+                SOSDOCS - Guarda, Gestão e Tecnologia - G5 - GUARDA SIA/DF
+            </div>
+        </div>
+
+        <!-- ===== CONTEÚDO ===== -->
+        <div class="content">
+
+            <!-- ===== SIDEBAR (fixa) ===== -->
+            <div class="sidebar">
+                <div class="sidebar-title">Configurações de Impressão</div>
+
+                <!-- Impressora -->
+                <div class="form-group-sidebar">
+                    <div class="printer-row">
+                        <label>Impressora</label>
+                        <svg class="refresh-btn" viewBox="0 0 24 24" fill="#3a8ebd">
+                            <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+                        </svg>
+                    </div>
+                    <div class="select-container">
+                        <select id="impressoraSelect">
+                            <option value=""></option>
+                            <option value="convencional">Impressora Convencional</option>
+                            <option value="disco_removivel">Disco removível (Datador)</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                    </div>
+                </div>
+
+                <!-- Disco Removível (aparece quando selecionado) -->
+                <div class="form-group-sidebar" id="discoGroup" style="display:none;">
+                    <label>Disco Removível</label>
+                    <div class="select-container">
+                        <select id="discoSelect">
+                            <option value=""></option>
+                            <option value="Pendrive (E:)">Pendrive (E:)</option>
+                            <option value="Pendrive (F:)">Pendrive (F:)</option>
+                            <option value="Pendrive (G:)">Pendrive (G:)</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="info-text" id="datadorInfo" style="display:none;">
+                        Modo Datador: as etiquetas serão exportadas em formato de planilha para o dispositivo selecionado.
+                    </div>
+                </div>
+
+                <!-- Rotação -->
+                <div class="form-group-sidebar" id="rotacaoGroup">
+                    <label>Rotação</label>
+                    <div class="select-container">
+                        <select><option value="BAIXO">BAIXO</option></select>
+                        <span class="select-arrow"></span>
+                    </div>
+                </div>
+
+                <!-- Velocidade -->
+                <div class="form-group-sidebar" id="velocidadeGroup">
+                    <label>Velocidade</label>
+                    <div class="select-container">
+                        <select><option value="1">1</option></select>
+                        <span class="select-arrow"></span>
+                    </div>
+                </div>
+
+                <!-- Temperatura -->
+                <div class="form-group-sidebar" id="temperaturaGroup">
+                    <label>Temperatura</label>
+                    <div class="select-container">
+                        <select><option value="1">1</option></select>
+                        <span class="select-arrow"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PAINEL DIREITO (dinâmico) ===== -->
+            <div class="main-panel-border" id="mainPanel">
+
+                <!-- TELA 1: MENU PRINCIPAL -->
+                <div id="screenMenu">
+                    <div class="panel-title">Selecione uma opção para começar</div>
+                    <div class="button-list">
+                        <button class="menu-btn" data-target="screenPrint">Etiquetas de Caixas e Documentos</button>
+                        <button class="menu-btn">Reimprimir Etiqueta de Caixas e Documentos</button>
+                        <button class="menu-btn">Etiquetas de Endereçamentos</button>
+                        <button class="menu-btn">Etiquetas de Endereços Externos</button>
+                        <button class="menu-btn">Etiquetas de QR Code Usuários</button>
+                    </div>
+                </div>
+
+                <!-- TELA 2: IMPRESSÃO DE ETIQUETAS (inicialmente oculta) -->
+                <div id="screenPrint" class="hidden">
+                    <div>
+                        <div class="panel-title">Impressão de Etiquetas para Objetos</div>
+                        <div class="main-form">
+                            <!-- Cliente -->
+                            <div class="form-group-main">
+                                <label>Cliente</label>
+                                <div class="select-container">
+                                    <select><option value=""></option></select>
+                                    <span class="select-arrow"></span>
+                                </div>
+                            </div>
+
+                            <!-- Tipo de Etiqueta -->
+                            <div class="form-group-main">
+                                <label>Tipo de Etiqueta</label>
+                                <div class="select-container">
+                                    <select id="tipoEtiqueta">
+                                        <option value=""></option>
+                                        <option value="Caixa 20 KG">Caixa 20 KG</option>
+                                        <option value="Caixa Box">Caixa Box</option>
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                </div>
+                            </div>
+
+                            <!-- Checkbox: Caixa com Lacre (logo abaixo do Tipo de Etiqueta) -->
+                            <div class="form-group-main" id="lacreGroup" style="display:none;">
+                                <div class="checkbox-row">
+                                    <input type="checkbox" id="chkLacre" />
+                                    <label for="chkLacre">Caixa 20 KG com Lacre</label>
+                                </div>
+                            </div>
+
+                            <!-- Modelo Etiqueta -->
+                            <div class="form-group-main">
+                                <label>Modelo Etiqueta</label>
+                                <div class="select-container">
+                                    <select><option value=""></option></select>
+                                    <span class="select-arrow"></span>
+                                </div>
+                            </div>
+
+                            <!-- Quantidade -->
+                            <div class="form-group-main">
+                                <label>Quantidade</label>
+                                <div class="select-container">
+                                    <input type="text" value="1" id="quantidadeInput" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn" id="btnImprimir">Imprimir</button>
+                        <button class="btn" id="btnVoltar">Voltar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===== BARRA DE STATUS ===== -->
+        <div class="status-bar">
+            <div>Usuário Logado: guilherme.ribeiro@sosdocs.com.br</div>
+            <div>Versão: 5.5.3.6</div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL (mensagem de sucesso) ===== -->
+    <div id="successModal" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <p>Etiquetas geradas com sucesso.<br/>A planilha foi exportada para o disco removível selecionado.</p>
+            <button class="btn" id="modalOkBtn">OK</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ===== ELEMENTOS =====
+            const screenMenu = document.getElementById('screenMenu');
+            const screenPrint = document.getElementById('screenPrint');
+            const tipoEtiqueta = document.getElementById('tipoEtiqueta');
+            const lacreGroup = document.getElementById('lacreGroup');
+            const chkLacre = document.getElementById('chkLacre');
+            const impressoraSelect = document.getElementById('impressoraSelect');
+            const discoGroup = document.getElementById('discoGroup');
+            const discoSelect = document.getElementById('discoSelect');
+            const datadorInfo = document.getElementById('datadorInfo');
+            const btnImprimir = document.getElementById('btnImprimir');
+            const btnVoltar = document.getElementById('btnVoltar');
+            const successModal = document.getElementById('successModal');
+            const modalOkBtn = document.getElementById('modalOkBtn');
+            const quantidadeInput = document.getElementById('quantidadeInput');
+
+            // Grupos de configurações térmicas
+            const rotacaoGroup = document.getElementById('rotacaoGroup');
+            const velocidadeGroup = document.getElementById('velocidadeGroup');
+            const temperaturaGroup = document.getElementById('temperaturaGroup');
+
+            // ===== CONSTANTES =====
+            const TIPO_CAIXA_20KG = 'Caixa 20 KG';
+            const TIPO_CAIXA_BOX = 'Caixa Box';
+            const IMPRESSORA_DATADOR = 'disco_removivel';
+
+            // Lista completa de tipos
+            const ALL_TYPES = ['', TIPO_CAIXA_20KG, TIPO_CAIXA_BOX];
+
+            // ===== FUNÇÕES =====
+
+            // Atualiza as opções do select de Tipo de Etiqueta
+            function updateTipoEtiquetaOptions(types) {
+                const currentValue = tipoEtiqueta.value;
+                tipoEtiqueta.innerHTML = '';
+                types.forEach(function(t) {
+                    const opt = document.createElement('option');
+                    opt.value = t;
+                    opt.textContent = t || '';
+                    tipoEtiqueta.appendChild(opt);
+                });
+                if (types.includes(currentValue)) {
+                    tipoEtiqueta.value = currentValue;
+                } else {
+                    tipoEtiqueta.value = '';
+                }
+                tipoEtiqueta.dispatchEvent(new Event('change'));
+            }
+
+            // Mostra/oculta checkbox "Caixa com Lacre"
+            function updateLacreVisibility() {
+                const selected = tipoEtiqueta.value;
+                if (selected === TIPO_CAIXA_20KG) {
+                    lacreGroup.style.display = 'block';
+                } else {
+                    lacreGroup.style.display = 'none';
+                    chkLacre.checked = false;
+                }
+            }
+
+            // Mostra/oculta configurações térmicas
+            function updateThermalSettings(show) {
+                if (show) {
+                    rotacaoGroup.style.display = 'block';
+                    velocidadeGroup.style.display = 'block';
+                    temperaturaGroup.style.display = 'block';
+                } else {
+                    rotacaoGroup.style.display = 'none';
+                    velocidadeGroup.style.display = 'none';
+                    temperaturaGroup.style.display = 'none';
+                }
+            }
+
+            // Gera Identificadores SOS no formato correto
+            function generateSOSIdentifiers(count) {
+                const identifiers = [];
+                const prefix = 'CB99999DG5';
+                const suffix = 'SOS';
+                const startNumber = 597; // Número inicial baseado no exemplo
+
+                for (let i = 0; i < count; i++) {
+                    const number = startNumber + i;
+                    const paddedNumber = String(number).padStart(8, '0');
+                    identifiers.push(prefix + paddedNumber + suffix);
+                }
+                return identifiers;
+            }
+
+            // Gera e baixa a planilha (apenas Identificador SOS)
+            function downloadSpreadsheet() {
+                const qtd = parseInt(quantidadeInput.value, 10) || 1;
+                const identifiers = generateSOSIdentifiers(qtd);
+
+                // Cria o conteúdo CSV com apenas Identificador SOS
+                let csvContent = 'Identificador SOS\n';
+                identifiers.forEach(id => {
+                    csvContent += id + '\n';
+                });
+
+                // Cria o blob e faz o download
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', `identificadores_sos_${new Date().toISOString().slice(0,10)}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            }
+
+            // ===== EVENTOS =====
+
+            // 1. Impressora: controla visibilidade do disco e tipos de etiqueta
+            impressoraSelect.addEventListener('change', function() {
+                const isDatador = (this.value === IMPRESSORA_DATADOR);
+
+                if (isDatador) {
+                    discoGroup.style.display = 'block';
+                    datadorInfo.style.display = 'block';
+                    updateTipoEtiquetaOptions(ALL_TYPES);
+                    updateThermalSettings(false);
+                } else {
+                    discoGroup.style.display = 'none';
+                    datadorInfo.style.display = 'none';
+                    updateTipoEtiquetaOptions(ALL_TYPES);
+                    updateThermalSettings(true);
+                    discoSelect.value = '';
+                }
+            });
+
+            // 2. Tipo de Etiqueta: controla checkbox "Caixa com Lacre"
+            tipoEtiqueta.addEventListener('change', function() {
+                updateLacreVisibility();
+            });
+
+            // 3. Botão Imprimir - validações e fluxo
+            btnImprimir.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // 1. Validar Impressora
+                if (!impressoraSelect.value) {
+                    alert('Selecione uma Impressora.');
+                    return;
+                }
+
+                // 2. Se for Datador, validar Disco Removível
+                if (impressoraSelect.value === IMPRESSORA_DATADOR) {
+                    if (!discoSelect.value) {
+                        alert('Selecione um Disco Removível.');
+                        return;
+                    }
+                }
+
+                // 3. Validar Tipo de Etiqueta
+                if (!tipoEtiqueta.value) {
+                    alert('Selecione um Tipo de Etiqueta.');
+                    return;
+                }
+
+                // 4. Validar Quantidade
+                const qtd = parseInt(quantidadeInput.value, 10);
+                if (isNaN(qtd) || qtd < 1) {
+                    alert('Informe uma quantidade válida (mínimo 1).');
+                    return;
+                }
+
+                // Se for Datador, faz o download da planilha
+                if (impressoraSelect.value === IMPRESSORA_DATADOR) {
+                    downloadSpreadsheet();
+                }
+
+                // Exibe modal de sucesso
+                successModal.style.display = 'flex';
+            });
+
+            // 4. Voltar ao menu
+            btnVoltar.addEventListener('click', function(e) {
+                e.preventDefault();
+                screenPrint.classList.add('hidden');
+                screenMenu.classList.remove('hidden');
+            });
+
+            // 5. Botões do menu principal
+            const openPrintButtons = document.querySelectorAll('[data-target="screenPrint"]');
+            openPrintButtons.forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    screenMenu.classList.add('hidden');
+                    screenPrint.classList.remove('hidden');
+                    // Reset ao abrir
+                    if (impressoraSelect.value === IMPRESSORA_DATADOR) {
+                        discoGroup.style.display = 'block';
+                        datadorInfo.style.display = 'block';
+                        updateThermalSettings(false);
+                    } else {
+                        discoGroup.style.display = 'none';
+                        datadorInfo.style.display = 'none';
+                        updateThermalSettings(true);
+                    }
+                    chkLacre.checked = false;
+                    updateLacreVisibility();
+                });
+            });
+
+            // Outros botões do menu - sem ação (irrelevante)
+            const otherMenuButtons = document.querySelectorAll('.menu-btn:not([data-target])');
+            otherMenuButtons.forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Sem ação, irrelevante
+                });
+            });
+
+            // 6. Modal: fechar
+            modalOkBtn.addEventListener('click', function() {
+                successModal.style.display = 'none';
+            });
+
+            successModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                }
+            });
+
+            // ===== INICIALIZAÇÃO =====
+            impressoraSelect.value = '';
+            discoGroup.style.display = 'none';
+            datadorInfo.style.display = 'none';
+            updateTipoEtiquetaOptions(ALL_TYPES);
+            updateThermalSettings(true);
+            updateLacreVisibility();
+
+            console.log('Aplicação inicializada com sucesso.');
+        })();
+    </script>
+
+</body>
+</html>

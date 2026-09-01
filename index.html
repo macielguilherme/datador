@@ -86,7 +86,7 @@
             min-height: 480px;
         }
 
-        /* ===== SIDEBAR (esquerda) ===== */
+        /* ===== SIDEBAR (esquerda) - OCULTA NO MENU INICIAL ===== */
         .sidebar {
             width: 210px;
             display: flex;
@@ -94,6 +94,10 @@
             gap: 20px;
             padding-right: 10px;
             border-right: 2px solid #000000;
+        }
+
+        .sidebar.hidden-sidebar {
+            display: none !important;
         }
 
         .sidebar-title {
@@ -168,6 +172,10 @@
             flex-direction: column;
             justify-content: space-between;
             background-color: #f8f8f8;
+        }
+
+        .main-panel-border.full-width {
+            border: 1px solid #666;
         }
 
         .panel-title {
@@ -379,9 +387,9 @@
         <!-- ===== CONTEÚDO ===== -->
         <div class="content">
 
-            <!-- ===== SIDEBAR (fixa) ===== -->
-            <div class="sidebar" id="sidebarPanel">
-                <!-- ===== CONFIGURAÇÕES DE IMPRESSÃO (padrão) ===== -->
+            <!-- ===== SIDEBAR (esquerda) - OCULTA POR PADRÃO ===== -->
+            <div class="sidebar hidden-sidebar" id="sidebarPanel">
+                <!-- ===== CONFIGURAÇÕES DE IMPRESSÃO ===== -->
                 <div id="printSettingsGroup">
                     <div class="sidebar-title">Configurações de Impressão</div>
 
@@ -490,7 +498,7 @@
             </div>
 
             <!-- ===== PAINEL DIREITO (dinâmico) ===== -->
-            <div class="main-panel-border" id="mainPanel">
+            <div class="main-panel-border full-width" id="mainPanel">
 
                 <!-- TELA 1: MENU PRINCIPAL -->
                 <div id="screenMenu">
@@ -501,7 +509,7 @@
                         <button class="menu-btn">Etiquetas de Endereçamentos</button>
                         <button class="menu-btn">Etiquetas de Endereços Externos</button>
                         <button class="menu-btn">Etiquetas de QR Code Usuários</button>
-                        <button class="menu-btn" data-target="screenDatador">Emitir etiquetas para datador</button>
+                        <button class="menu-btn" data-target="screenDatador">Emitir Etiquetas para Datador</button>
                     </div>
                 </div>
 
@@ -576,7 +584,7 @@
                 <!-- TELA 3: DATADOR (nova funcionalidade) -->
                 <div id="screenDatador" class="hidden">
                     <div>
-                        <div class="panel-title">Emitir etiquetas para datador</div>
+                        <div class="panel-title">Emitir Etiquetas Para Datador</div>
                         <div class="main-form">
                             <!-- Cliente -->
                             <div class="form-group-main">
@@ -599,7 +607,7 @@
                                     <select id="tipoEtiquetaDatador">
                                         <option value=""></option>
                                         <option value="Caixa 20 kg (cx)">Caixa 20 kg (cx)</option>
-                                        <option value="Caixa box (140 CB)">Caixa box (140 CB)</option>
+                                        <option value="Caixa box">Caixa box</option>
                                     </select>
                                     <span class="select-arrow"></span>
                                 </div>
@@ -654,6 +662,8 @@
             const screenMenu = document.getElementById('screenMenu');
             const screenPrint = document.getElementById('screenPrint');
             const screenDatador = document.getElementById('screenDatador');
+            const sidebarPanel = document.getElementById('sidebarPanel');
+            const mainPanel = document.getElementById('mainPanel');
             
             const printSettingsGroup = document.getElementById('printSettingsGroup');
             const datadorSettingsGroup = document.getElementById('datadorSettingsGroup');
@@ -690,7 +700,7 @@
             const TIPO_CAIXA_20KG = 'Caixa 20 KG';
             const TIPO_CAIXA_BOX = 'Caixa Box';
             const TIPO_CAIXA_20KG_DATADOR = 'Caixa 20 kg (cx)';
-            const TIPO_CAIXA_BOX_DATADOR = 'Caixa box (140 CB)';
+            const TIPO_CAIXA_BOX_DATADOR = 'Caixa box';
             const IMPRESSORA_DATADOR = 'disco_removivel';
 
             // Lista completa de tipos
@@ -738,14 +748,31 @@
                 }
             }
 
-            // Controla a visibilidade dos grupos da sidebar
-            function toggleSidebarMode(isDatadorMode) {
-                if (isDatadorMode) {
-                    printSettingsGroup.style.display = 'none';
-                    datadorSettingsGroup.style.display = 'block';
+            // Controla a visibilidade da sidebar
+            function toggleSidebar(show) {
+                if (show) {
+                    sidebarPanel.classList.remove('hidden-sidebar');
+                    mainPanel.classList.remove('full-width');
                 } else {
+                    sidebarPanel.classList.add('hidden-sidebar');
+                    mainPanel.classList.add('full-width');
+                }
+            }
+
+            // Controla o que mostrar na sidebar
+            function setSidebarMode(mode) {
+                // Esconde tudo primeiro
+                printSettingsGroup.style.display = 'none';
+                datadorSettingsGroup.style.display = 'none';
+                
+                if (mode === 'print') {
                     printSettingsGroup.style.display = 'block';
-                    datadorSettingsGroup.style.display = 'none';
+                    toggleSidebar(true);
+                } else if (mode === 'datador') {
+                    datadorSettingsGroup.style.display = 'block';
+                    toggleSidebar(true);
+                } else {
+                    toggleSidebar(false);
                 }
             }
 
@@ -868,7 +895,7 @@
                 e.preventDefault();
                 screenPrint.classList.add('hidden');
                 screenMenu.classList.remove('hidden');
-                toggleSidebarMode(false);
+                setSidebarMode('menu');
             });
 
             // 6. Botão Gerar Planilha (datador)
@@ -919,7 +946,7 @@
                 e.preventDefault();
                 screenDatador.classList.add('hidden');
                 screenMenu.classList.remove('hidden');
-                toggleSidebarMode(false);
+                setSidebarMode('menu');
             });
 
             // 8. Botões do menu principal
@@ -929,7 +956,7 @@
                     e.preventDefault();
                     screenMenu.classList.add('hidden');
                     screenPrint.classList.remove('hidden');
-                    toggleSidebarMode(false);
+                    setSidebarMode('print');
                     chkLacre.checked = false;
                     updateLacreVisibility();
                 });
@@ -942,7 +969,7 @@
                     e.preventDefault();
                     screenMenu.classList.add('hidden');
                     screenDatador.classList.remove('hidden');
-                    toggleSidebarMode(true);
+                    setSidebarMode('datador');
                     // Resetar campos
                     clienteDatador.value = '';
                     tipoEtiquetaDatador.value = '';
@@ -977,7 +1004,7 @@
             impressoraSelect.value = '';
             discoGroup.style.display = 'none';
             datadorInfo.style.display = 'none';
-            toggleSidebarMode(false);
+            setSidebarMode('menu'); // Menu inicial: sidebar oculta
             updateTipoEtiquetaOptions(ALL_TYPES);
             updateLacreVisibility();
             updateLacreDatadorVisibility();

@@ -389,7 +389,7 @@
 
             <!-- ===== SIDEBAR (esquerda) - OCULTA POR PADRÃO ===== -->
             <div class="sidebar hidden-sidebar" id="sidebarPanel">
-                <!-- ===== CONFIGURAÇÕES DE IMPRESSÃO ===== -->
+                <!-- ===== CONFIGURAÇÕES DE IMPRESSÃO (MODO PRINT) ===== -->
                 <div id="printSettingsGroup">
                     <div class="sidebar-title">Configurações de Impressão</div>
 
@@ -405,7 +405,7 @@
                             <select id="impressoraSelect">
                                 <option value=""></option>
                                 <option value="convencional">Impressora Convencional</option>
-                    
+                                <option value="disco_removivel">Disco Removível (Datador)</option>
                             </select>
                             <span class="select-arrow"></span>
                         </div>
@@ -458,33 +458,22 @@
 
                 <!-- ===== CONFIGURAÇÕES DO DATADOR ===== -->
                 <div id="datadorSettingsGroup" style="display:none;">
-                    <div class="sidebar-title">Configurações</div>
+                    <div class="sidebar-title">Configurações do Datador</div>
                     
-                    <!-- Destino -->
-                    
-                    <div id="printSettingsGroup">
-                    <div class="sidebar-title">Configurações de Impressão</div>
-
-                    <!-- Impressora -->
+                    <!-- Destino (agora apenas um campo) -->
                     <div class="form-group-sidebar">
-                        <div class="printer-row">
-                            <label>Destino</label>
-                            <svg class="refresh-btn" viewBox="0 0 24 24" fill="#3a8ebd">
-                                <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
-                            </svg>
-                        </div>
+                        <label>Destino</label>
                         <div class="select-container">
-                            <select id="impressoraSelect">
+                            <select id="destinoSelect">
                                 <option value=""></option>
-                                <option value="convencional">Disco Removível (Datador)</option>
-                    
+                                <option value="disco_removivel">Disco Removível (Datador)</option>
                             </select>
                             <span class="select-arrow"></span>
                         </div>
                     </div>
+
                     <!-- Disco Removível -->
                     <div class="form-group-sidebar">
-            
                         <label>Disco Removível</label>
                         <div class="select-container">
                             <select id="discoRemovivelSelect">
@@ -545,7 +534,7 @@
                                 <div class="select-container">
                                     <select id="tipoEtiqueta">
                                         <option value=""></option>
-                                        <option value="Caixa 20 KG">Documentos (CB)</option>
+                                        <option value="Caixa 20 KG">Documentos (DC)</option>
                                         
                                     </select>
                                     <span class="select-arrow"></span>

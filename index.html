@@ -332,14 +332,24 @@
             font-style: italic;
         }
 
-        /* Estilo específico para o menu do datador */
-        .datador-menu-btn {
-            background-color: #e67e22;
-            border-color: #d35400;
+        /* Estilo para o campo destino na sidebar */
+        .destino-field {
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            margin-top: 5px;
         }
 
-        .datador-menu-btn:hover {
-            background-color: #d35400;
+        .destino-field .sidebar-title {
+            font-size: 12px;
+            color: #444;
+            margin-bottom: 8px;
+        }
+
+        /* Grupo de configurações de impressão */
+        .print-settings {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
     </style>
 </head>
@@ -359,7 +369,7 @@
         <!-- ===== CABEÇALHO ===== -->
         <div class="header">
             <div class="logo">
-                <img src="https://sosdocs.com.br/wp-content/uploads/2025/01/logo-sos-docs-azul.svg" alt="SOS Docs" />
+                <img src="https://www.sosdocs.com.br/brand/sosdocs-logo.png" alt="SOS Docs" />
             </div>
             <div class="header-title">
                 SOSDOCS - Guarda, Gestão e Tecnologia - G5 - GUARDA SIA/DF
@@ -371,67 +381,110 @@
 
             <!-- ===== SIDEBAR (fixa) ===== -->
             <div class="sidebar" id="sidebarPanel">
-                <div class="sidebar-title">Configurações de Impressão</div>
+                <!-- ===== CONFIGURAÇÕES DE IMPRESSÃO (padrão) ===== -->
+                <div id="printSettingsGroup">
+                    <div class="sidebar-title">Configurações de Impressão</div>
 
-                <!-- Impressora -->
-                <div class="form-group-sidebar">
-                    <div class="printer-row">
-                        <label>Impressora</label>
-                        <svg class="refresh-btn" viewBox="0 0 24 24" fill="#3a8ebd">
-                            <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
-                        </svg>
+                    <!-- Impressora -->
+                    <div class="form-group-sidebar">
+                        <div class="printer-row">
+                            <label>Impressora</label>
+                            <svg class="refresh-btn" viewBox="0 0 24 24" fill="#3a8ebd">
+                                <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+                            </svg>
+                        </div>
+                        <div class="select-container">
+                            <select id="impressoraSelect">
+                                <option value=""></option>
+                                <option value="convencional">Impressora Convencional</option>
+                                <option value="disco_removivel">Disco removível (Datador)</option>
+                            </select>
+                            <span class="select-arrow"></span>
+                        </div>
                     </div>
-                    <div class="select-container">
-                        <select id="impressoraSelect">
-                            <option value=""></option>
-                            <option value="convencional">Impressora Convencional</option>
-                            <option value="disco_removivel">Disco removível (Datador)</option>
-                        </select>
-                        <span class="select-arrow"></span>
+
+                    <!-- Disco Removível (aparece quando selecionado) -->
+                    <div class="form-group-sidebar" id="discoGroup" style="display:none;">
+                        <label>Disco Removível</label>
+                        <div class="select-container">
+                            <select id="discoSelect">
+                                <option value=""></option>
+                                <option value="Pendrive (E:)">Pendrive (E:)</option>
+                                <option value="Pendrive (F:)">Pendrive (F:)</option>
+                                <option value="Pendrive (G:)">Pendrive (G:)</option>
+                            </select>
+                            <span class="select-arrow"></span>
+                        </div>
+                        <div class="info-text" id="datadorInfo" style="display:none;">
+                            Modo Datador: as etiquetas serão exportadas em formato de planilha para o dispositivo selecionado.
+                        </div>
+                    </div>
+
+                    <!-- Rotação -->
+                    <div class="form-group-sidebar" id="rotacaoGroup">
+                        <label>Rotação</label>
+                        <div class="select-container">
+                            <select><option value="BAIXO">BAIXO</option></select>
+                            <span class="select-arrow"></span>
+                        </div>
+                    </div>
+
+                    <!-- Velocidade -->
+                    <div class="form-group-sidebar" id="velocidadeGroup">
+                        <label>Velocidade</label>
+                        <div class="select-container">
+                            <select><option value="1">1</option></select>
+                            <span class="select-arrow"></span>
+                        </div>
+                    </div>
+
+                    <!-- Temperatura -->
+                    <div class="form-group-sidebar" id="temperaturaGroup">
+                        <label>Temperatura</label>
+                        <div class="select-container">
+                            <select><option value="1">1</option></select>
+                            <span class="select-arrow"></span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Disco Removível (aparece quando selecionado) -->
-                <div class="form-group-sidebar" id="discoGroup" style="display:none;">
-                    <label>Disco Removível</label>
-                    <div class="select-container">
-                        <select id="discoSelect">
-                            <option value=""></option>
-                            <option value="Pendrive (E:)">Pendrive (E:)</option>
-                            <option value="Pendrive (F:)">Pendrive (F:)</option>
-                            <option value="Pendrive (G:)">Pendrive (G:)</option>
-                        </select>
-                        <span class="select-arrow"></span>
+                <!-- ===== CONFIGURAÇÕES DO DATADOR ===== -->
+                <div id="datadorSettingsGroup" style="display:none;">
+                    <div class="sidebar-title">Configurações</div>
+                    
+                    <!-- Destino -->
+                    <div class="form-group-sidebar">
+                        <label>Destino</label>
+                        <div class="select-container">
+                            <select id="destinoSelect">
+                                <option value=""></option>
+                                <option value="Pendrive (E:)">Pendrive (E:)</option>
+                                <option value="Pendrive (F:)">Pendrive (F:)</option>
+                                <option value="Pendrive (G:)">Pendrive (G:)</option>
+                                <option value="Pendrive (H:)">Pendrive (H:)</option>
+                                <option value="Pendrive (I:)">Pendrive (I:)</option>
+                            </select>
+                            <span class="select-arrow"></span>
+                        </div>
                     </div>
-                    <div class="info-text" id="datadorInfo" style="display:none;">
-                        Modo Datador: as etiquetas serão exportadas em formato de planilha para o dispositivo selecionado.
-                    </div>
-                </div>
 
-                <!-- Rotação -->
-                <div class="form-group-sidebar" id="rotacaoGroup">
-                    <label>Rotação</label>
-                    <div class="select-container">
-                        <select><option value="BAIXO">BAIXO</option></select>
-                        <span class="select-arrow"></span>
-                    </div>
-                </div>
-
-                <!-- Velocidade -->
-                <div class="form-group-sidebar" id="velocidadeGroup">
-                    <label>Velocidade</label>
-                    <div class="select-container">
-                        <select><option value="1">1</option></select>
-                        <span class="select-arrow"></span>
-                    </div>
-                </div>
-
-                <!-- Temperatura -->
-                <div class="form-group-sidebar" id="temperaturaGroup">
-                    <label>Temperatura</label>
-                    <div class="select-container">
-                        <select><option value="1">1</option></select>
-                        <span class="select-arrow"></span>
+                    <!-- Disco Removível -->
+                    <div class="form-group-sidebar">
+                        <label>Disco Removível</label>
+                        <div class="select-container">
+                            <select id="discoRemovivelSelect">
+                                <option value=""></option>
+                                <option value="Pendrive (E:)">Pendrive (E:)</option>
+                                <option value="Pendrive (F:)">Pendrive (F:)</option>
+                                <option value="Pendrive (G:)">Pendrive (G:)</option>
+                                <option value="Pendrive (H:)">Pendrive (H:)</option>
+                                <option value="Pendrive (I:)">Pendrive (I:)</option>
+                            </select>
+                            <span class="select-arrow"></span>
+                        </div>
+                        <div class="info-text">
+                            Modo Datador: as etiquetas serão exportadas em formato de planilha para o dispositivo selecionado.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -448,7 +501,6 @@
                         <button class="menu-btn">Etiquetas de Endereçamentos</button>
                         <button class="menu-btn">Etiquetas de Endereços Externos</button>
                         <button class="menu-btn">Etiquetas de QR Code Usuários</button>
-                        <!-- NOVO BOTÃO: Emitir etiquetas para datador -->
                         <button class="menu-btn" data-target="screenDatador">Emitir etiquetas para datador</button>
                     </div>
                 </div>
@@ -462,7 +514,12 @@
                             <div class="form-group-main">
                                 <label>Cliente</label>
                                 <div class="select-container">
-                                    <select><option value=""></option></select>
+                                    <select>
+                                        <option value=""></option>
+                                        <option value="Cliente A">Cliente A</option>
+                                        <option value="Cliente B">Cliente B</option>
+                                        <option value="Cliente C">Cliente C</option>
+                                    </select>
                                     <span class="select-arrow"></span>
                                 </div>
                             </div>
@@ -480,7 +537,7 @@
                                 </div>
                             </div>
 
-                            <!-- Checkbox: Caixa com Lacre (logo abaixo do Tipo de Etiqueta) -->
+                            <!-- Checkbox: Caixa com Lacre -->
                             <div class="form-group-main" id="lacreGroup" style="display:none;">
                                 <div class="checkbox-row">
                                     <input type="checkbox" id="chkLacre" />
@@ -492,7 +549,11 @@
                             <div class="form-group-main">
                                 <label>Modelo Etiqueta</label>
                                 <div class="select-container">
-                                    <select><option value=""></option></select>
+                                    <select>
+                                        <option value=""></option>
+                                        <option value="Modelo 1">Modelo 1</option>
+                                        <option value="Modelo 2">Modelo 2</option>
+                                    </select>
                                     <span class="select-arrow"></span>
                                 </div>
                             </div>
@@ -531,7 +592,7 @@
                                 </div>
                             </div>
 
-                            <!-- Tipo de Etiqueta (restrito a Caixa 20 kg e Caixa box) -->
+                            <!-- Tipo de Etiqueta (restrito) -->
                             <div class="form-group-main">
                                 <label>Tipo de Etiqueta</label>
                                 <div class="select-container">
@@ -557,20 +618,6 @@
                                 <label>Quantidade</label>
                                 <div class="select-container">
                                     <input type="text" value="1" id="quantidadeDatador" />
-                                </div>
-                            </div>
-
-                            <!-- Disco Removível (seleção obrigatória) -->
-                            <div class="form-group-main">
-                                <label>Disco Removível</label>
-                                <div class="select-container">
-                                    <select id="discoDatador">
-                                        <option value=""></option>
-                                        <option value="Pendrive (E:)">Pendrive (E:)</option>
-                                        <option value="Pendrive (F:)">Pendrive (F:)</option>
-                                        <option value="Pendrive (G:)">Pendrive (G:)</option>
-                                    </select>
-                                    <span class="select-arrow"></span>
                                 </div>
                             </div>
                         </div>
@@ -607,7 +654,9 @@
             const screenMenu = document.getElementById('screenMenu');
             const screenPrint = document.getElementById('screenPrint');
             const screenDatador = document.getElementById('screenDatador');
-            const sidebarPanel = document.getElementById('sidebarPanel');
+            
+            const printSettingsGroup = document.getElementById('printSettingsGroup');
+            const datadorSettingsGroup = document.getElementById('datadorSettingsGroup');
             
             const tipoEtiqueta = document.getElementById('tipoEtiqueta');
             const lacreGroup = document.getElementById('lacreGroup');
@@ -633,13 +682,9 @@
             
             const quantidadeInput = document.getElementById('quantidadeInput');
             const quantidadeDatador = document.getElementById('quantidadeDatador');
-            const discoDatador = document.getElementById('discoDatador');
+            const destinoSelect = document.getElementById('destinoSelect');
+            const discoRemovivelSelect = document.getElementById('discoRemovivelSelect');
             const clienteDatador = document.getElementById('clienteDatador');
-
-            // Grupos de configurações térmicas
-            const rotacaoGroup = document.getElementById('rotacaoGroup');
-            const velocidadeGroup = document.getElementById('velocidadeGroup');
-            const temperaturaGroup = document.getElementById('temperaturaGroup');
 
             // ===== CONSTANTES =====
             const TIPO_CAIXA_20KG = 'Caixa 20 KG';
@@ -650,7 +695,6 @@
 
             // Lista completa de tipos
             const ALL_TYPES = ['', TIPO_CAIXA_20KG, TIPO_CAIXA_BOX];
-            const DATADOR_TYPES = ['', TIPO_CAIXA_20KG_DATADOR, TIPO_CAIXA_BOX_DATADOR];
 
             // ===== FUNÇÕES =====
 
@@ -694,16 +738,14 @@
                 }
             }
 
-            // Mostra/oculta configurações térmicas
-            function updateThermalSettings(show) {
-                if (show) {
-                    rotacaoGroup.style.display = 'block';
-                    velocidadeGroup.style.display = 'block';
-                    temperaturaGroup.style.display = 'block';
+            // Controla a visibilidade dos grupos da sidebar
+            function toggleSidebarMode(isDatadorMode) {
+                if (isDatadorMode) {
+                    printSettingsGroup.style.display = 'none';
+                    datadorSettingsGroup.style.display = 'block';
                 } else {
-                    rotacaoGroup.style.display = 'none';
-                    velocidadeGroup.style.display = 'none';
-                    temperaturaGroup.style.display = 'none';
+                    printSettingsGroup.style.display = 'block';
+                    datadorSettingsGroup.style.display = 'none';
                 }
             }
 
@@ -764,7 +806,7 @@
 
             // ===== EVENTOS =====
 
-            // 1. Impressora: controla visibilidade do disco e tipos de etiqueta
+            // 1. Impressora: controla visibilidade do disco
             impressoraSelect.addEventListener('change', function() {
                 const isDatador = (this.value === IMPRESSORA_DATADOR);
 
@@ -772,12 +814,10 @@
                     discoGroup.style.display = 'block';
                     datadorInfo.style.display = 'block';
                     updateTipoEtiquetaOptions(ALL_TYPES);
-                    updateThermalSettings(false);
                 } else {
                     discoGroup.style.display = 'none';
                     datadorInfo.style.display = 'none';
                     updateTipoEtiquetaOptions(ALL_TYPES);
-                    updateThermalSettings(true);
                     discoSelect.value = '';
                 }
             });
@@ -792,7 +832,7 @@
                 updateLacreDatadorVisibility();
             });
 
-            // 4. Botão Imprimir (fluxo normal) - mantido intacto
+            // 4. Botão Imprimir (fluxo normal)
             btnImprimir.addEventListener('click', function(e) {
                 e.preventDefault();
 
@@ -819,11 +859,7 @@
                     return;
                 }
 
-                if (impressoraSelect.value === IMPRESSORA_DATADOR) {
-                    downloadSpreadsheet(discoSelect.value);
-                }
-
-                modalMessage.innerHTML = 'Etiquetas geradas com sucesso.<br/>A planilha foi exportada para o disco removível selecionado.';
+                modalMessage.innerHTML = 'Etiquetas geradas com sucesso!';
                 successModal.style.display = 'flex';
             });
 
@@ -832,6 +868,7 @@
                 e.preventDefault();
                 screenPrint.classList.add('hidden');
                 screenMenu.classList.remove('hidden');
+                toggleSidebarMode(false);
             });
 
             // 6. Botão Gerar Planilha (datador)
@@ -857,14 +894,20 @@
                     return;
                 }
 
+                // Validar Destino
+                if (!destinoSelect.value) {
+                    alert('Selecione um Destino.');
+                    return;
+                }
+
                 // Validar Disco Removível
-                if (!discoDatador.value) {
+                if (!discoRemovivelSelect.value) {
                     alert('Selecione um Disco Removível.');
                     return;
                 }
 
                 // Gerar a planilha
-                downloadSpreadsheet(discoDatador.value);
+                downloadSpreadsheet(discoRemovivelSelect.value);
 
                 // Exibir modal de sucesso
                 modalMessage.innerHTML = 'Planilha gerada com sucesso!<br/>Os identificadores SOS foram salvos no disco removível selecionado.';
@@ -876,8 +919,7 @@
                 e.preventDefault();
                 screenDatador.classList.add('hidden');
                 screenMenu.classList.remove('hidden');
-                // Restaurar sidebar
-                sidebarPanel.classList.remove('hidden');
+                toggleSidebarMode(false);
             });
 
             // 8. Botões do menu principal
@@ -887,16 +929,7 @@
                     e.preventDefault();
                     screenMenu.classList.add('hidden');
                     screenPrint.classList.remove('hidden');
-                    // Reset ao abrir
-                    if (impressoraSelect.value === IMPRESSORA_DATADOR) {
-                        discoGroup.style.display = 'block';
-                        datadorInfo.style.display = 'block';
-                        updateThermalSettings(false);
-                    } else {
-                        discoGroup.style.display = 'none';
-                        datadorInfo.style.display = 'none';
-                        updateThermalSettings(true);
-                    }
+                    toggleSidebarMode(false);
                     chkLacre.checked = false;
                     updateLacreVisibility();
                 });
@@ -909,16 +942,15 @@
                     e.preventDefault();
                     screenMenu.classList.add('hidden');
                     screenDatador.classList.remove('hidden');
+                    toggleSidebarMode(true);
                     // Resetar campos
                     clienteDatador.value = '';
                     tipoEtiquetaDatador.value = '';
                     quantidadeDatador.value = '1';
-                    discoDatador.value = '';
+                    destinoSelect.value = '';
+                    discoRemovivelSelect.value = '';
                     chkLacreDatador.checked = false;
                     lacreGroupDatador.style.display = 'none';
-                    
-                    // Ocultar sidebar (configurações de impressão)
-                    sidebarPanel.classList.add('hidden');
                 });
             });
 
@@ -945,8 +977,8 @@
             impressoraSelect.value = '';
             discoGroup.style.display = 'none';
             datadorInfo.style.display = 'none';
+            toggleSidebarMode(false);
             updateTipoEtiquetaOptions(ALL_TYPES);
-            updateThermalSettings(true);
             updateLacreVisibility();
             updateLacreDatadorVisibility();
 

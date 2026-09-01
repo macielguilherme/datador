@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -332,6 +331,16 @@
             margin-top: 2px;
             font-style: italic;
         }
+
+        /* Estilo específico para o menu do datador */
+        .datador-menu-btn {
+            background-color: #e67e22;
+            border-color: #d35400;
+        }
+
+        .datador-menu-btn:hover {
+            background-color: #d35400;
+        }
     </style>
 </head>
 <body>
@@ -361,7 +370,7 @@
         <div class="content">
 
             <!-- ===== SIDEBAR (fixa) ===== -->
-            <div class="sidebar">
+            <div class="sidebar" id="sidebarPanel">
                 <div class="sidebar-title">Configurações de Impressão</div>
 
                 <!-- Impressora -->
@@ -439,10 +448,12 @@
                         <button class="menu-btn">Etiquetas de Endereçamentos</button>
                         <button class="menu-btn">Etiquetas de Endereços Externos</button>
                         <button class="menu-btn">Etiquetas de QR Code Usuários</button>
+                        <!-- NOVO BOTÃO: Emitir etiquetas para datador -->
+                        <button class="menu-btn datador-menu-btn" data-target="screenDatador">Emitir etiquetas para datador</button>
                     </div>
                 </div>
 
-                <!-- TELA 2: IMPRESSÃO DE ETIQUETAS (inicialmente oculta) -->
+                <!-- TELA 2: IMPRESSÃO DE ETIQUETAS (fluxo existente) -->
                 <div id="screenPrint" class="hidden">
                     <div>
                         <div class="panel-title">Impressão de Etiquetas para Objetos</div>
@@ -501,6 +512,75 @@
                     </div>
                 </div>
 
+                <!-- TELA 3: DATADOR (nova funcionalidade) -->
+                <div id="screenDatador" class="hidden">
+                    <div>
+                        <div class="panel-title">Emitir etiquetas para datador</div>
+                        <div class="main-form">
+                            <!-- Cliente -->
+                            <div class="form-group-main">
+                                <label>Cliente</label>
+                                <div class="select-container">
+                                    <select id="clienteDatador">
+                                        <option value=""></option>
+                                        <option value="Cliente A">Cliente A</option>
+                                        <option value="Cliente B">Cliente B</option>
+                                        <option value="Cliente C">Cliente C</option>
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                </div>
+                            </div>
+
+                            <!-- Tipo de Etiqueta (restrito a Caixa 20 kg e Caixa box) -->
+                            <div class="form-group-main">
+                                <label>Tipo de Etiqueta</label>
+                                <div class="select-container">
+                                    <select id="tipoEtiquetaDatador">
+                                        <option value=""></option>
+                                        <option value="Caixa 20 kg (cx)">Caixa 20 kg (cx)</option>
+                                        <option value="Caixa box (140 CB)">Caixa box (140 CB)</option>
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                </div>
+                            </div>
+
+                            <!-- Checkbox: Caixa 20 kg com lacre (apenas para Caixa 20 kg) -->
+                            <div class="form-group-main" id="lacreGroupDatador" style="display:none;">
+                                <div class="checkbox-row">
+                                    <input type="checkbox" id="chkLacreDatador" />
+                                    <label for="chkLacreDatador">Caixa 20 kg com lacre</label>
+                                </div>
+                            </div>
+
+                            <!-- Quantidade -->
+                            <div class="form-group-main">
+                                <label>Quantidade</label>
+                                <div class="select-container">
+                                    <input type="text" value="1" id="quantidadeDatador" />
+                                </div>
+                            </div>
+
+                            <!-- Disco Removível (seleção obrigatória) -->
+                            <div class="form-group-main">
+                                <label>Disco Removível</label>
+                                <div class="select-container">
+                                    <select id="discoDatador">
+                                        <option value=""></option>
+                                        <option value="Pendrive (E:)">Pendrive (E:)</option>
+                                        <option value="Pendrive (F:)">Pendrive (F:)</option>
+                                        <option value="Pendrive (G:)">Pendrive (G:)</option>
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn" id="btnGerarDatador">Gerar Planilha</button>
+                        <button class="btn" id="btnVoltarDatador">Voltar</button>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -514,7 +594,7 @@
     <!-- ===== MODAL (mensagem de sucesso) ===== -->
     <div id="successModal" class="modal-overlay" style="display:none;">
         <div class="modal-box">
-            <p>Etiquetas geradas com sucesso.<br/>A planilha foi exportada para o disco removível selecionado.</p>
+            <p id="modalMessage">Etiquetas geradas com sucesso.<br/>A planilha foi exportada para o disco removível selecionado.</p>
             <button class="btn" id="modalOkBtn">OK</button>
         </div>
     </div>
@@ -526,18 +606,35 @@
             // ===== ELEMENTOS =====
             const screenMenu = document.getElementById('screenMenu');
             const screenPrint = document.getElementById('screenPrint');
+            const screenDatador = document.getElementById('screenDatador');
+            const sidebarPanel = document.getElementById('sidebarPanel');
+            
             const tipoEtiqueta = document.getElementById('tipoEtiqueta');
             const lacreGroup = document.getElementById('lacreGroup');
             const chkLacre = document.getElementById('chkLacre');
+            
+            const tipoEtiquetaDatador = document.getElementById('tipoEtiquetaDatador');
+            const lacreGroupDatador = document.getElementById('lacreGroupDatador');
+            const chkLacreDatador = document.getElementById('chkLacreDatador');
+            
             const impressoraSelect = document.getElementById('impressoraSelect');
             const discoGroup = document.getElementById('discoGroup');
             const discoSelect = document.getElementById('discoSelect');
             const datadorInfo = document.getElementById('datadorInfo');
+            
             const btnImprimir = document.getElementById('btnImprimir');
             const btnVoltar = document.getElementById('btnVoltar');
+            const btnGerarDatador = document.getElementById('btnGerarDatador');
+            const btnVoltarDatador = document.getElementById('btnVoltarDatador');
+            
             const successModal = document.getElementById('successModal');
             const modalOkBtn = document.getElementById('modalOkBtn');
+            const modalMessage = document.getElementById('modalMessage');
+            
             const quantidadeInput = document.getElementById('quantidadeInput');
+            const quantidadeDatador = document.getElementById('quantidadeDatador');
+            const discoDatador = document.getElementById('discoDatador');
+            const clienteDatador = document.getElementById('clienteDatador');
 
             // Grupos de configurações térmicas
             const rotacaoGroup = document.getElementById('rotacaoGroup');
@@ -547,14 +644,17 @@
             // ===== CONSTANTES =====
             const TIPO_CAIXA_20KG = 'Caixa 20 KG';
             const TIPO_CAIXA_BOX = 'Caixa Box';
+            const TIPO_CAIXA_20KG_DATADOR = 'Caixa 20 kg (cx)';
+            const TIPO_CAIXA_BOX_DATADOR = 'Caixa box (140 CB)';
             const IMPRESSORA_DATADOR = 'disco_removivel';
 
             // Lista completa de tipos
             const ALL_TYPES = ['', TIPO_CAIXA_20KG, TIPO_CAIXA_BOX];
+            const DATADOR_TYPES = ['', TIPO_CAIXA_20KG_DATADOR, TIPO_CAIXA_BOX_DATADOR];
 
             // ===== FUNÇÕES =====
 
-            // Atualiza as opções do select de Tipo de Etiqueta
+            // Atualiza as opções do select de Tipo de Etiqueta (fluxo normal)
             function updateTipoEtiquetaOptions(types) {
                 const currentValue = tipoEtiqueta.value;
                 tipoEtiqueta.innerHTML = '';
@@ -572,7 +672,7 @@
                 tipoEtiqueta.dispatchEvent(new Event('change'));
             }
 
-            // Mostra/oculta checkbox "Caixa com Lacre"
+            // Mostra/oculta checkbox "Caixa com Lacre" (fluxo normal)
             function updateLacreVisibility() {
                 const selected = tipoEtiqueta.value;
                 if (selected === TIPO_CAIXA_20KG) {
@@ -580,6 +680,17 @@
                 } else {
                     lacreGroup.style.display = 'none';
                     chkLacre.checked = false;
+                }
+            }
+
+            // Mostra/oculta checkbox "Caixa 20 kg com lacre" (datador)
+            function updateLacreDatadorVisibility() {
+                const selected = tipoEtiquetaDatador.value;
+                if (selected === TIPO_CAIXA_20KG_DATADOR) {
+                    lacreGroupDatador.style.display = 'block';
+                } else {
+                    lacreGroupDatador.style.display = 'none';
+                    chkLacreDatador.checked = false;
                 }
             }
 
@@ -612,8 +723,8 @@
             }
 
             // Gera e baixa a planilha no formato XLS (sem cabeçalho, apenas os identificadores)
-            function downloadSpreadsheet() {
-                const qtd = parseInt(quantidadeInput.value, 10) || 1;
+            function downloadSpreadsheet(discoName) {
+                const qtd = parseInt(quantidadeDatador.value, 10) || 1;
                 const identifiers = generateSOSIdentifiers(qtd);
 
                 // Cria uma tabela HTML para formato XLS - sem cabeçalho, apenas os dados
@@ -671,22 +782,25 @@
                 }
             });
 
-            // 2. Tipo de Etiqueta: controla checkbox "Caixa com Lacre"
+            // 2. Tipo de Etiqueta (normal): controla checkbox "Caixa com Lacre"
             tipoEtiqueta.addEventListener('change', function() {
                 updateLacreVisibility();
             });
 
-            // 3. Botão Imprimir - validações e fluxo
+            // 3. Tipo de Etiqueta (datador): controla checkbox "Caixa 20 kg com lacre"
+            tipoEtiquetaDatador.addEventListener('change', function() {
+                updateLacreDatadorVisibility();
+            });
+
+            // 4. Botão Imprimir (fluxo normal) - mantido intacto
             btnImprimir.addEventListener('click', function(e) {
                 e.preventDefault();
 
-                // 1. Validar Impressora
                 if (!impressoraSelect.value) {
                     alert('Selecione uma Impressora.');
                     return;
                 }
 
-                // 2. Se for Datador, validar Disco Removível
                 if (impressoraSelect.value === IMPRESSORA_DATADOR) {
                     if (!discoSelect.value) {
                         alert('Selecione um Disco Removível.');
@@ -694,36 +808,79 @@
                     }
                 }
 
-                // 3. Validar Tipo de Etiqueta
                 if (!tipoEtiqueta.value) {
                     alert('Selecione um Tipo de Etiqueta.');
                     return;
                 }
 
-                // 4. Validar Quantidade
                 const qtd = parseInt(quantidadeInput.value, 10);
                 if (isNaN(qtd) || qtd < 1) {
                     alert('Informe uma quantidade válida (mínimo 1).');
                     return;
                 }
 
-                // Se for Datador, faz o download da planilha
                 if (impressoraSelect.value === IMPRESSORA_DATADOR) {
-                    downloadSpreadsheet();
+                    downloadSpreadsheet(discoSelect.value);
                 }
 
-                // Exibe modal de sucesso
+                modalMessage.innerHTML = 'Etiquetas geradas com sucesso.<br/>A planilha foi exportada para o disco removível selecionado.';
                 successModal.style.display = 'flex';
             });
 
-            // 4. Voltar ao menu
+            // 5. Voltar ao menu (fluxo normal)
             btnVoltar.addEventListener('click', function(e) {
                 e.preventDefault();
                 screenPrint.classList.add('hidden');
                 screenMenu.classList.remove('hidden');
             });
 
-            // 5. Botões do menu principal
+            // 6. Botão Gerar Planilha (datador)
+            btnGerarDatador.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Validar Cliente
+                if (!clienteDatador.value) {
+                    alert('Selecione um Cliente.');
+                    return;
+                }
+
+                // Validar Tipo de Etiqueta
+                if (!tipoEtiquetaDatador.value) {
+                    alert('Selecione um Tipo de Etiqueta.');
+                    return;
+                }
+
+                // Validar Quantidade
+                const qtd = parseInt(quantidadeDatador.value, 10);
+                if (isNaN(qtd) || qtd < 1) {
+                    alert('Informe uma quantidade válida (mínimo 1).');
+                    return;
+                }
+
+                // Validar Disco Removível
+                if (!discoDatador.value) {
+                    alert('Selecione um Disco Removível.');
+                    return;
+                }
+
+                // Gerar a planilha
+                downloadSpreadsheet(discoDatador.value);
+
+                // Exibir modal de sucesso
+                modalMessage.innerHTML = 'Planilha gerada com sucesso!<br/>Os identificadores SOS foram salvos no disco removível selecionado.';
+                successModal.style.display = 'flex';
+            });
+
+            // 7. Voltar ao menu (datador)
+            btnVoltarDatador.addEventListener('click', function(e) {
+                e.preventDefault();
+                screenDatador.classList.add('hidden');
+                screenMenu.classList.remove('hidden');
+                // Restaurar sidebar
+                sidebarPanel.classList.remove('hidden');
+            });
+
+            // 8. Botões do menu principal
             const openPrintButtons = document.querySelectorAll('[data-target="screenPrint"]');
             openPrintButtons.forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
@@ -745,16 +902,35 @@
                 });
             });
 
-            // Outros botões do menu - sem ação (irrelevante)
+            // Botão do datador
+            const openDatadorButtons = document.querySelectorAll('[data-target="screenDatador"]');
+            openDatadorButtons.forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    screenMenu.classList.add('hidden');
+                    screenDatador.classList.remove('hidden');
+                    // Resetar campos
+                    clienteDatador.value = '';
+                    tipoEtiquetaDatador.value = '';
+                    quantidadeDatador.value = '1';
+                    discoDatador.value = '';
+                    chkLacreDatador.checked = false;
+                    lacreGroupDatador.style.display = 'none';
+                    
+                    // Ocultar sidebar (configurações de impressão)
+                    sidebarPanel.classList.add('hidden');
+                });
+            });
+
+            // Outros botões do menu - sem ação
             const otherMenuButtons = document.querySelectorAll('.menu-btn:not([data-target])');
             otherMenuButtons.forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    // Sem ação, irrelevante
                 });
             });
 
-            // 6. Modal: fechar
+            // 9. Modal: fechar
             modalOkBtn.addEventListener('click', function() {
                 successModal.style.display = 'none';
             });
@@ -772,6 +948,7 @@
             updateTipoEtiquetaOptions(ALL_TYPES);
             updateThermalSettings(true);
             updateLacreVisibility();
+            updateLacreDatadorVisibility();
 
             console.log('Aplicação inicializada com sucesso.');
         })();

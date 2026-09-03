@@ -460,21 +460,9 @@
                 <div id="datadorSettingsGroup" style="display:none;">
                     <div class="sidebar-title">Configurações do Datador</div>
                     
-                    <!-- Destino (agora apenas um campo) -->
+                    <!-- Disco Removível (agora com o rótulo alterado) -->
                     <div class="form-group-sidebar">
-                        <label>Destino</label>
-                        <div class="select-container">
-                            <select id="destinoSelect">
-                                <option value=""></option>
-                                <option value="disco_removivel">Disco Removível (Datador)</option>
-                            </select>
-                            <span class="select-arrow"></span>
-                        </div>
-                    </div>
-
-                    <!-- Disco Removível -->
-                    <div class="form-group-sidebar">
-                        <label>Disco Removível</label>
+                        <label>Selecione o Disco Removível</label>
                         <div class="select-container">
                             <select id="discoRemovivelSelect">
                                 <option value=""></option>
@@ -689,7 +677,6 @@
             
             const quantidadeInput = document.getElementById('quantidadeInput');
             const quantidadeDatador = document.getElementById('quantidadeDatador');
-            const destinoSelect = document.getElementById('destinoSelect');
             const discoRemovivelSelect = document.getElementById('discoRemovivelSelect');
             const clienteDatador = document.getElementById('clienteDatador');
 
@@ -918,12 +905,6 @@
                     return;
                 }
 
-                // Validar Destino
-                if (!destinoSelect.value) {
-                    alert('Selecione um Destino.');
-                    return;
-                }
-
                 // Validar Disco Removível
                 if (!discoRemovivelSelect.value) {
                     alert('Selecione um Disco Removível.');
@@ -971,7 +952,6 @@
                     clienteDatador.value = '';
                     tipoEtiquetaDatador.value = '';
                     quantidadeDatador.value = '1';
-                    destinoSelect.value = '';
                     discoRemovivelSelect.value = '';
                     chkLacreDatador.checked = false;
                     lacreGroupDatador.style.display = 'none';

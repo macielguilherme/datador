@@ -405,7 +405,6 @@
                             <select id="impressoraSelect">
                                 <option value=""></option>
                                 <option value="convencional">Impressora Convencional</option>
-                               
                             </select>
                             <span class="select-arrow"></span>
                         </div>
@@ -521,11 +520,11 @@
                                 <label>Tipo de Etiqueta</label>
                                 <div class="select-container">
                                     <select id="tipoEtiqueta">
-    <option value=""></option>
-    <option value="Documento (DC)">Documento (DC)</option>
-    <option value="Caixa 20 KG">Caixa 20 KG</option>
-    <option value="Caixa Box">Caixa Box</option>
-</select>
+                                        <option value=""></option>
+                                        <option value="Documento (DC)">Documento (DC)</option>
+                                        <option value="Caixa 20 KG">Caixa 20 KG</option>
+                                        <option value="Caixa Box">Caixa Box</option>
+                                    </select>
                                     <span class="select-arrow"></span>
                                 </div>
                             </div>
@@ -593,7 +592,6 @@
                                         <option value=""></option>
                                         <option value="Caixa 20 kg (cx)">Caixa 20 kg (CX)</option>
                                         <option value="Caixa box">Caixa Box (CB)</option>
-                                        
                                     </select>
                                     <span class="select-arrow"></span>
                                 </div>
@@ -682,6 +680,7 @@
             const clienteDatador = document.getElementById('clienteDatador');
 
             // ===== CONSTANTES =====
+            const TIPO_DOCUMENTO = 'Documento (DC)';
             const TIPO_CAIXA_20KG = 'Caixa 20 KG';
             const TIPO_CAIXA_BOX = 'Caixa Box';
             const TIPO_CAIXA_20KG_DATADOR = 'Caixa 20 kg (cx)';
@@ -689,7 +688,7 @@
             const IMPRESSORA_DATADOR = 'disco_removivel';
 
             // Lista completa de tipos
-            const ALL_TYPES = ['', TIPO_CAIXA_20KG, TIPO_CAIXA_BOX];
+            const ALL_TYPES = ['', TIPO_DOCUMENTO, TIPO_CAIXA_20KG, TIPO_CAIXA_BOX];
 
             // ===== FUNÇÕES =====
 

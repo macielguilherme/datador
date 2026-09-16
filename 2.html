@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BRF Tecnologia, (c) 2025</title>
+    <style>
+        /* ===== RESET E BASE ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* ===== JANELA PRINCIPAL ===== */
+        .window {
+            width: 920px;
+            background-color: #f4f4f4;
+            border: 1px solid #707070;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            transition: opacity 0.2s;
+        }
+
+        /* ===== BARRA DE TÍTULO ===== */
+        .title-bar {
+            background-color: #ffffff;
+            padding: 4px 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #d0d0d0;
+            font-size: 11px;
+            color: #333;
+        }
+
+        .title-bar-controls {
+            display: flex;
+            gap: 14px;
+            font-size: 12px;
+        }
+
+        .title-bar-controls span {
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* ===== CABEÇALHO ===== */
+        .header {
+            background-color: #ffffff;
+            padding: 10px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #000;
+        }
+
+        .logo img {
+            height: 36px;
+            display: block;
+        }
+
+        .header-title {
+            font-weight: bold;
+            font-size: 15px;
+            color: #111;
+        }
+
+        /* ===== CONTEÚDO PRINCIPAL ===== */
+        .content {
+            display: flex;
+            padding: 12px 15px;
+            gap: 12px;
+            background-color: #f8f8f8;
+            min-height: 480px;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 210px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-right: 10px;
+            border-right: 2px solid #000000;
+        }
+
+        .sidebar.hidden-sidebar {
+            display: none !important;
+        }
+
+        .sidebar-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #222;
+            margin-top: 2px;
+        }
+
+        .form-group-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            position: relative;
+        }
+
+        .form-group-sidebar label {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .printer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .refresh-btn {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .select-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .select-container select,
+        .select-container input {
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #777;
+            background: transparent;
+            padding: 3px 18px 3px 0;
+            font-size: 12px;
+            outline: none;
+            color: #222;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        .select-arrow {
+            position: absolute;
+            right: 2px;
+            bottom: 5px;
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid #555;
+            pointer-events: none;
+        }
+
+        /* ===== PAINEL DIREITO ===== */
+        .main-panel-border {
+            flex: 1;
+            border: 1px solid #666;
+            padding: 15px 25px 18px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #f8f8f8;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .main-panel-border.full-width {
+            border: 1px solid #666;
+        }
+
+        .panel-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 4px;
+            margin-bottom: 15px;
+        }
+
+        .main-form {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .form-group-main {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .form-group-main label {
+            font-size: 13px;
+            color: #333;
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 2px;
+        }
+
+        .checkbox-row input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #6236b8;
+            cursor: pointer;
+        }
+
+        .checkbox-row label {
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* ===== BOTÕES ===== */
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 25px;
+            flex-shrink: 0;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px 0;
+            background-color: #6236b8;
+            color: white;
+            border: 1px solid #4f279e;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: background-color 0.15s ease;
+        }
+
+        .btn:hover {
+            background-color: #522aa0;
+        }
+
+        .btn:disabled {
+            background: #c5c5c5 !important;
+            border-color: #aaa !important;
+            color: #f0f0f0 !important;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .menu-btn {
+            width: 100%;
+            padding: 12px 0;
+            background-color: #6236b8;
+            color: white;
+            border: 1px solid #4d2998;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+            transition: background-color 0.15s ease;
+            text-align: center;
+        }
+
+        .menu-btn:hover {
+            background-color: #532c9e;
+        }
+
+        .button-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* ===== TELA DE HISTORICO ===== */
+        .reexport-screen-wrap {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+            gap: 14px;
+        }
+
+        .reexport-subtitle {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .reexport-list {
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            flex: 1;
+            min-height: 0;
+            border: 1px solid #d0d0d0;
+            border-radius: 6px;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .reexport-header-row {
+            display: grid;
+            align-items: center;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: #ffffff;
+            background: #6236b8;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .reexport-header-row.history {
+            grid-template-columns: 1.1fr 1.7fr 0.8fr 1.6fr 140px;
+        }
+
+        .reexport-row.history {
+            grid-template-columns: 1.1fr 1.7fr 0.8fr 1.6fr 140px;
+        }
+
+        .reexport-header-row>div {
+            padding: 10px 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .reexport-header-row .col-actions {
+            text-align: right;
+            padding-right: 16px;
+        }
+
+        .reexport-row {
+            display: grid;
+            align-items: center;
+            font-size: 12px;
+            color: #222;
+            background: #ffffff;
+            border-bottom: 1px solid #ececec;
+            transition: background-color 0.12s ease;
+        }
+
+        .reexport-row:nth-child(even) {
+            background: #fafafa;
+        }
+
+        .reexport-row:hover {
+            background: #f3ecff;
+        }
+
+        .reexport-row:last-child {
+            border-bottom: none;
+        }
+
+        .reexport-row>div {
+            padding: 9px 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: flex;
+            align-items: center;
+        }
+
+        .reexport-row .cliente-cell {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .reexport-row .arquivo-cell {
+            font-family: "Consolas", "Monaco", monospace;
+            font-size: 11.5px;
+            color: #444;
+        }
+
+        .reexport-row .tamanho-cell {
+            color: #555;
+            font-size: 11.5px;
+        }
+
+        .reexport-row .datahora-cell {
+            font-size: 11.5px;
+            color: #444;
+        }
+
+        .reexport-row .actions-cell {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            justify-content: flex-end;
+            padding-right: 12px;
+        }
+
+        .reexport-row .actions-cell .btn {
+            flex: 0 0 auto;
+            padding: 5px 14px;
+            font-size: 11px;
+            border-radius: 3px;
+            box-shadow: none;
+        }
+
+        .btn-ghost {
+            background: #ffffff !important;
+            color: #6236b8 !important;
+            border: 1px solid #6236b8 !important;
+        }
+
+        .btn-ghost:hover {
+            background: #f3ecff !important;
+        }
+
+        /* Rodape com acoes */
+        .reexport-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+            padding-top: 4px;
+        }
+
+        .reexport-footer .selection-info {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .reexport-footer .selection-info strong {
+            color: #6236b8;
+        }
+
+        .reexport-footer-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .reexport-footer-actions .btn {
+            flex: 0 0 auto;
+            padding: 9px 20px;
+            font-size: 12.5px;
+        }
+
+        /* Estado vazio */
+        .reexport-empty {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px 20px;
+            border: 1px dashed #c5c5c5;
+            border-radius: 6px;
+            color: #777;
+            background: #fafafa;
+        }
+
+        .reexport-empty-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 6px;
+        }
+
+        .reexport-empty-text {
+            font-size: 12px;
+            max-width: 380px;
+            line-height: 1.5;
+        }
+
+        /* ===== BARRA DE STATUS ===== */
+        .status-bar {
+            background-color: #ffffff;
+            border-top: 1px solid #000;
+            padding: 4px 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #333;
+        }
+
+        /* ===== UTILITÁRIOS ===== */
+        .hidden {
+            display: none !important;
+        }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .modal-box {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 6px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            max-width: 480px;
+            text-align: center;
+            border: 1px solid #aaa;
+        }
+
+        .modal-box p {
+            font-size: 15px;
+            color: #222;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .modal-box .btn {
+            width: auto;
+            padding: 8px 36px;
+            display: inline-block;
+        }
+
+        .info-text {
+            font-size: 10px;
+            color: #555;
+            margin-top: 2px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="window" id="appWindow">
+        <!-- ===== BARRA DE TÍTULO ===== -->
+        <div class="title-bar">
+            <div>BRF Tecnologia, (c) 2025</div>
+            <div class="title-bar-controls">
+                <span>&#8212;</span>
+                <span>&#9633;</span>
+                <span>&#10005;</span>
+            </div>
+        </div>
+
+        <!-- ===== CABEÇALHO ===== -->
+        <div class="header">
+            <div class="logo">
+                <img src="https://www.sosdocs.com.br/brand/sosdocs-logo.png" alt="SOS Docs" />
+            </div>
+            <div class="header-title">
+                SOSDOCS - Guarda, Gestão e Tecnologia - G5 - GUARDA SIA/DF
+            </div>
+        </div>
+
+        <!-- ===== CONTEÚDO ===== -->
+        <div class="content">
+
+            <!-- ===== SIDEBAR ===== -->
+            <div class="sidebar hidden-sidebar" id="sidebarPanel">
+                <div id="printSettingsGroup">
+                    <div class="sidebar-title">Configurações de Impressão</div>
+
+                    <div class="form-group-sidebar">
+                        <div class="printer-row">
+                            <label>Destino</label>
+                            <svg class="refresh-btn" viewBox="0 0 24 24" fill="#3a8ebd">
+                                <path
+                                    d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z" />
+                            </svg>
+                        </div>
+                        <div class="select-container">
+                            <select id="impressoraSelect">
+                                <option value=""></option>
+                                <option value="convencional">Impressora Convencional</option>
+                            </select>
+                            <span class="select-arrow"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group-sidebar" id="discoGroup" style="display:none;">
+                        <label>Disco Removível</label>
+                        <div class="select-container">
+                            <select id="discoSelect">
+                                <option value=""></option>
+                                <option value="Pendrive (E:)">Pendrive (E:)</option>
+                                <option value="Pendrive (F:)">Pendrive (F:)</option>
+                                <option value="Pendrive (G:)">Pendrive (G:)</option>
+                            </select>
+                            <span class="select-arrow"></span>
+                        </div>
+                        <div class="info-text" id="datadorInfo" style="display:none;">
+                            Modo Datador: as etiquetas serão exportadas em formato de planilha para o dispositivo
+                            selecionado.
+                        </div>
+                    </div>
+
+                    <div class="form-group-sidebar" id="rotacaoGroup">
+                        <label>Rotação</label>
+                        <div class="select-container">
+                            <select>
+                                <option value="BAIXO">BAIXO</option>
+                            </select>
+                            <span class="select-arrow"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group-sidebar" id="velocidadeGroup">
+                        <label>Velocidade</label>
+                        <div class="select-container">
+                            <select>
+                                <option value="1">1</option>
+                            </select>
+                            <span class="select-arrow"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group-sidebar" id="temperaturaGroup">
+                        <label>Temperatura</label>
+                        <div class="select-container">
+                            <select>
+                                <option value="1">1</option>
+                            </select>
+                            <span class="select-arrow"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="datadorSettingsGroup" style="display:none;">
+                    <div class="sidebar-title">Configurações do Datador</div>
+
+                    <div class="form-group-sidebar">
+                        <label>Selecione o Disco Removível</label>
+                        <div class="select-container">
+                            <select id="discoRemovivelSelect">
+                                <option value=""></option>
+                                <option value="Pendrive (E:)">Pendrive (E:)</option>
+                                <option value="Pendrive (F:)">Pendrive (F:)</option>
+                                <option value="Pendrive (G:)">Pendrive (G:)</option>
+                                <option value="Pendrive (H:)">Pendrive (H:)</option>
+                                <option value="Pendrive (I:)">Pendrive (I:)</option>
+                            </select>
+                            <span class="select-arrow"></span>
+                        </div>
+                        <div class="info-text">
+                            Modo Datador: as etiquetas serão exportadas em formato de planilha para o dispositivo
+                            selecionado.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PAINEL DIREITO ===== -->
+            <div class="main-panel-border full-width" id="mainPanel">
+
+                <!-- TELA 1: MENU PRINCIPAL -->
+                <div id="screenMenu">
+                    <div class="panel-title">Selecione uma opção para começar</div>
+                    <div class="button-list">
+                        <button class="menu-btn" data-target="screenPrint">Etiquetas de Caixas e Documentos</button>
+                        <button class="menu-btn">Reimprimir Etiqueta de Caixas e Documentos</button>
+                        <button class="menu-btn">Etiquetas de Endereçamentos</button>
+                        <button class="menu-btn">Etiquetas de Endereços Externos</button>
+                        <button class="menu-btn">Etiquetas de QR Code Usuários</button>
+                        <button class="menu-btn" data-target="screenDatador">Emitir Etiquetas para Datador</button>
+                        <button class="menu-btn" data-target="screenReexportarDatador">Historico de Planilhas para
+                            Datador</button>
+                    </div>
+                </div>
+
+                <!-- TELA 2: IMPRESSÃO DE ETIQUETAS -->
+                <div id="screenPrint" class="hidden">
+                    <div>
+                        <div class="panel-title">Impressão de Etiquetas para Objetos</div>
+                        <div class="main-form">
+                            <div class="form-group-main">
+                                <label>Cliente</label>
+                                <div class="select-container">
+                                    <select>
+                                        <option value=""></option>
+                                        <option value="Cliente A">Cliente A</option>
+                                        <option value="Cliente B">Cliente B</option>
+                                        <option value="Cliente C">Cliente C</option>
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group-main">
+                                <label>Tipo de Etiqueta</label>
+                                <div class="select-container">
+                                    <select id="tipoEtiqueta">
+                                        <option value=""></option>
+                                        <option value="Documento (DC)">Documento (DC)</option>
+                                        <option value="Caixa 20 KG">Caixa 20 KG</option>
+                                        <option value="Caixa Box">Caixa Box</option>
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group-main" id="lacreGroup" style="display:none;">
+                                <div class="checkbox-row">
+                                    <input type="checkbox" id="chkLacre" />
+                                    <label for="chkLacre">Caixa 20 KG com Lacre</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group-main">
+                                <label>Modelo Etiqueta</label>
+                                <div class="select-container">
+                                    <select>
+                                        <option value=""></option>
+                                        <option value="Modelo 1">Modelo 1</option>
+                                        <option value="Modelo 2">Modelo 2</option>
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group-main">
+                                <label>Quantidade</label>
+                                <div class="select-container">
+                                    <input type="text" value="1" id="quantidadeInput" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn" id="btnImprimir">Imprimir</button>
+                        <button class="btn" id="btnVoltar">Voltar</button>
+                    </div>
+                </div>
+
+                <!-- TELA 3: DATADOR -->
+                <div id="screenDatador" class="hidden">
+                    <div>
+                        <div class="panel-title">Emitir Etiquetas Para Datador</div>
+                        <div class="main-form">
+                            <div class="form-group-main">
+                                <label>Cliente</label>
+                                <div class="select-container">
+                                    <select id="clienteDatador">
+                                        <option value=""></option>
+                                        <option value="Cliente A">Cliente A</option>
+                                        <option value="Cliente B">Cliente B</option>
+                                        <option value="Cliente C">Cliente C</option>
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group-main">
+                                <label>Tipo de Etiqueta</label>
+                                <div class="select-container">
+                                    <select id="tipoEtiquetaDatador">
+                                        <option value=""></option>
+                                        <option value="Caixa 20 kg (cx)">Caixa 20 kg (CX)</option>
+                                        <option value="Caixa box">Caixa Box (CB)</option>
+                                    </select>
+                                    <span class="select-arrow"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group-main" id="lacreGroupDatador" style="display:none;">
+                                <div class="checkbox-row">
+                                    <input type="checkbox" id="chkLacreDatador" />
+                                    <label for="chkLacreDatador">Caixa 20 kg com lacre</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group-main">
+                                <label>Quantidade</label>
+                                <div class="select-container">
+                                    <input type="text" value="1" id="quantidadeDatador" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn" id="btnGerarDatador">Gerar Planilha</button>
+                        <button class="btn" id="btnVoltarDatador">Voltar</button>
+                    </div>
+                </div>
+
+                <!-- TELA 4: HISTORICO DE PLANILHAS GERADAS PARA DATADOR -->
+                <div id="screenReexportarDatador" class="hidden reexport-screen-wrap">
+                    <div>
+                        <div class="panel-title">Historico de Planilhas Geradas para Datador</div>
+                        <div class="reexport-subtitle">
+                            Planilhas geradas por <strong
+                                id="reexportUserLabel">guilherme.ribeiro@sosdocs.com.br</strong>
+                        </div>
+                    </div>
+
+                    <div id="reexportHeaderRow" class="reexport-header-row history">
+                        <div>Cliente</div>
+                        <div>Data/Hora</div>
+                        <div>Tamanho</div>
+                        <div>Arquivo</div>
+                        <div class="col-actions">Acoes</div>
+                    </div>
+
+                    <div id="reexportList" class="reexport-list"></div>
+
+                    <div id="reexportEmpty" class="reexport-empty hidden">
+                        <div class="reexport-empty-title">Nenhuma planilha gerada ainda</div>
+                        <div class="reexport-empty-text">
+                            As planilhas que voce gerar na opcao "Emitir Etiquetas para Datador"
+                            aparecerao aqui para reexportacao.
+                        </div>
+                    </div>
+
+                    <div class="reexport-footer" id="reexportFooter">
+                        <div class="selection-info" id="reexportSelectionInfo"></div>
+                        <div class="reexport-footer-actions">
+                            <button class="btn btn-ghost" id="btnVoltarReexportarDatador">Voltar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===== BARRA DE STATUS ===== -->
+        <div class="status-bar">
+            <div>Usuário Logado: guilherme.ribeiro@sosdocs.com.br</div>
+            <div>Versão: 5.5.3.6</div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL ===== -->
+    <div id="successModal" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <p id="modalMessage">Etiquetas geradas com sucesso.<br />A planilha foi exportada para o disco removível
+                selecionado.</p>
+            <button class="btn" id="modalOkBtn">OK</button>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            // ===== ELEMENTOS =====
+            const screenMenu = document.getElementById('screenMenu');
+            const screenPrint = document.getElementById('screenPrint');
+            const screenDatador = document.getElementById('screenDatador');
+            const screenReexportarDatador = document.getElementById('screenReexportarDatador');
+            const sidebarPanel = document.getElementById('sidebarPanel');
+            const mainPanel = document.getElementById('mainPanel');
+
+            const printSettingsGroup = document.getElementById('printSettingsGroup');
+            const datadorSettingsGroup = document.getElementById('datadorSettingsGroup');
+
+            const tipoEtiqueta = document.getElementById('tipoEtiqueta');
+            const lacreGroup = document.getElementById('lacreGroup');
+            const chkLacre = document.getElementById('chkLacre');
+
+            const tipoEtiquetaDatador = document.getElementById('tipoEtiquetaDatador');
+            const lacreGroupDatador = document.getElementById('lacreGroupDatador');
+            const chkLacreDatador = document.getElementById('chkLacreDatador');
+
+            const impressoraSelect = document.getElementById('impressoraSelect');
+            const discoGroup = document.getElementById('discoGroup');
+            const discoSelect = document.getElementById('discoSelect');
+            const datadorInfo = document.getElementById('datadorInfo');
+
+            const btnImprimir = document.getElementById('btnImprimir');
+            const btnVoltar = document.getElementById('btnVoltar');
+            const btnGerarDatador = document.getElementById('btnGerarDatador');
+            const btnVoltarDatador = document.getElementById('btnVoltarDatador');
+            const btnVoltarReexportarDatador = document.getElementById('btnVoltarReexportarDatador');
+
+            const successModal = document.getElementById('successModal');
+            const modalOkBtn = document.getElementById('modalOkBtn');
+            const modalMessage = document.getElementById('modalMessage');
+
+            const quantidadeInput = document.getElementById('quantidadeInput');
+            const quantidadeDatador = document.getElementById('quantidadeDatador');
+            const discoRemovivelSelect = document.getElementById('discoRemovivelSelect');
+            const clienteDatador = document.getElementById('clienteDatador');
+
+            // ===== CONSTANTES =====
+            const TIPO_DOCUMENTO = 'Documento (DC)';
+            const TIPO_CAIXA_20KG = 'Caixa 20 KG';
+            const TIPO_CAIXA_BOX = 'Caixa Box';
+            const TIPO_CAIXA_20KG_DATADOR = 'Caixa 20 kg (cx)';
+            const TIPO_CAIXA_BOX_DATADOR = 'Caixa box';
+            const IMPRESSORA_DATADOR = 'disco_removivel';
+
+            const USUARIO_LOGADO = 'guilherme.ribeiro@sosdocs.com.br';
+
+            const ALL_TYPES = ['', TIPO_DOCUMENTO, TIPO_CAIXA_20KG, TIPO_CAIXA_BOX];
+
+            // ===== FUNÇÕES AUXILIARES =====
+
+            function updateTipoEtiquetaOptions(types) {
+                const currentValue = tipoEtiqueta.value;
+                tipoEtiqueta.innerHTML = '';
+                types.forEach(function (t) {
+                    const opt = document.createElement('option');
+                    opt.value = t;
+                    opt.textContent = t || '';
+                    tipoEtiqueta.appendChild(opt);
+                });
+                if (types.includes(currentValue)) {
+                    tipoEtiqueta.value = currentValue;
+                } else {
+                    tipoEtiqueta.value = '';
+                }
+                tipoEtiqueta.dispatchEvent(new Event('change'));
+            }
+
+            function updateLacreVisibility() {
+                const selected = tipoEtiqueta.value;
+                if (selected === TIPO_CAIXA_20KG) {
+                    lacreGroup.style.display = 'block';
+                } else {
+                    lacreGroup.style.display = 'none';
+                    chkLacre.checked = false;
+                }
+            }
+
+            function updateLacreDatadorVisibility() {
+                const selected = tipoEtiquetaDatador.value;
+                if (selected === TIPO_CAIXA_20KG_DATADOR) {
+                    lacreGroupDatador.style.display = 'block';
+                } else {
+                    lacreGroupDatador.style.display = 'none';
+                    chkLacreDatador.checked = false;
+                }
+            }
+
+            function toggleSidebar(show) {
+                if (show) {
+                    sidebarPanel.classList.remove('hidden-sidebar');
+                    mainPanel.classList.remove('full-width');
+                } else {
+                    sidebarPanel.classList.add('hidden-sidebar');
+                    mainPanel.classList.add('full-width');
+                }
+            }
+
+            function setSidebarMode(mode) {
+                printSettingsGroup.style.display = 'none';
+                datadorSettingsGroup.style.display = 'none';
+
+                if (mode === 'print') {
+                    printSettingsGroup.style.display = 'block';
+                    toggleSidebar(true);
+                } else if (mode === 'datador') {
+                    datadorSettingsGroup.style.display = 'block';
+                    toggleSidebar(true);
+                } else {
+                    toggleSidebar(false);
+                }
+            }
+
+            function generateSOSIdentifiers(count, startNumber) {
+                const identifiers = [];
+                const prefix = 'CB99999DG5';
+                const suffix = 'SOS';
+                const start = startNumber || 597;
+
+                for (let i = 0; i < count; i++) {
+                    const number = start + i;
+                    const paddedNumber = String(number).padStart(9, '0');
+                    identifiers.push(prefix + paddedNumber + suffix);
+                }
+                return identifiers;
+            }
+
+            function gerarHtmlPlanilha(identifiers) {
+                let htmlContent = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">';
+                htmlContent += '<head><meta charset="UTF-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Identificadores</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->';
+                htmlContent += '<style>td { mso-number-format:"\\@"; }</style>';
+                htmlContent += '</head><body>';
+                htmlContent += '<table border="0" cellpadding="2" cellspacing="0">';
+
+                identifiers.forEach(function (id) {
+                    htmlContent += '<tr><td>' + id + '</td></tr>';
+                });
+
+                htmlContent += '</table></body></html>';
+                return htmlContent;
+            }
+
+            function downloadSpreadsheet(discoName, identifiers, fileName) {
+                if (!identifiers) {
+                    const qtd = parseInt(quantidadeDatador.value, 10) || 1;
+                    identifiers = generateSOSIdentifiers(qtd);
+                }
+
+                const htmlContent = gerarHtmlPlanilha(identifiers);
+
+                let finalFileName = fileName;
+                if (!finalFileName) {
+                    const now = new Date();
+                    const dia = String(now.getDate()).padStart(2, '0');
+                    const mes = String(now.getMonth() + 1).padStart(2, '0');
+                    const ano = now.getFullYear();
+                    const horas = String(now.getHours()).padStart(2, '0');
+                    const minutos = String(now.getMinutes()).padStart(2, '0');
+                    finalFileName = 'Datador_' + dia + mes + ano + '_' + horas + minutos + '.XLS';
+                }
+
+                const blob = new Blob([htmlContent], { type: 'application/vnd.ms-excel;charset=utf-8' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', finalFileName);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            }
+
+            // ===== HISTORICO DE PLANILHAS =====
+
+            function getPlanilhasGeradas() {
+                // Gera 100 identificadores sequenciais para a 4a planilha
+                function gerar100Etiquetas() {
+                    return generateSOSIdentifiers(100, 606);
+                }
+
+                return [
+                    {
+                        id: 'p1',
+                        cliente: 'Cliente A',
+                        dataHora: '2026-04-01T10:43:14',
+                        usuario: USUARIO_LOGADO,
+                        tamanho: '24 KB',
+                        formato: 'XLS',
+                        nomeArquivo: 'Datador_01042026_1043.XLS',
+                        etiquetas: [
+                            'CB99999DG5000000597SOS',
+                            'CB99999DG5000000598SOS',
+                            'CB99999DG5000000599SOS'
+                        ]
+                    },
+                    {
+                        id: 'p2',
+                        cliente: 'Cliente B',
+                        dataHora: '2026-03-15T09:12:47',
+                        usuario: USUARIO_LOGADO,
+                        tamanho: '18 KB',
+                        formato: 'XLS',
+                        nomeArquivo: 'Datador_15032026_0912.XLS',
+                        etiquetas: [
+                            'CB99999DG5000000600SOS',
+                            'CB99999DG5000000601SOS'
+                        ]
+                    },
+                    {
+                        id: 'p3',
+                        cliente: 'Cliente C',
+                        dataHora: '2026-03-10T16:45:02',
+                        usuario: USUARIO_LOGADO,
+                        tamanho: '52 KB',
+                        formato: 'XLS',
+                        nomeArquivo: 'Datador_10032026_1645.XLS',
+                        etiquetas: [
+                            'CB99999DG5000000602SOS',
+                            'CB99999DG5000000603SOS',
+                            'CB99999DG5000000604SOS',
+                            'CB99999DG5000000605SOS'
+                        ]
+                    },
+                    {
+                        id: 'p4',
+                        cliente: 'Cliente D',
+                        dataHora: '2026-02-20T08:15:33',
+                        usuario: USUARIO_LOGADO,
+                        tamanho: '312 KB',
+                        formato: 'XLS',
+                        nomeArquivo: 'Datador_20022026_0815.XLS',
+                        etiquetas: gerar100Etiquetas()
+                    }
+                ];
+            }
+
+            function formatarDataHora(iso) {
+                const d = new Date(iso);
+                const dia = String(d.getDate()).padStart(2, '0');
+                const mes = String(d.getMonth() + 1).padStart(2, '0');
+                const ano = d.getFullYear();
+                const hh = String(d.getHours()).padStart(2, '0');
+                const mm = String(d.getMinutes()).padStart(2, '0');
+                const ss = String(d.getSeconds()).padStart(2, '0');
+
+                // Fuso do navegador (UTC-03:00 em Brasilia)
+                const offsetMin = -d.getTimezoneOffset();
+                const sinal = offsetMin >= 0 ? '+' : '-';
+                const offsetAbs = Math.abs(offsetMin);
+                const offsetH = String(Math.floor(offsetAbs / 60)).padStart(2, '0');
+                const offsetM = String(offsetAbs % 60).padStart(2, '0');
+                const tz = 'UTC' + sinal + offsetH + ':' + offsetM;
+
+                return dia + '/' + mes + '/' + ano + ' ' + hh + ':' + mm + ':' + ss + ' (' + tz + ')';
+            }
+
+            function escapeHtml(str) {
+                return String(str)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#39;');
+            }
+
+            // ---------- HISTORICO ----------
+
+            function buildHistoryRowHtml(item) {
+                return `
+                    <div class="reexport-row history" data-id="${escapeHtml(item.id)}">
+                        <div class="cliente-cell" title="${escapeHtml(item.cliente)}">${escapeHtml(item.cliente)}</div>
+                        <div class="datahora-cell" title="${escapeHtml(formatarDataHora(item.dataHora))}">${escapeHtml(formatarDataHora(item.dataHora))}</div>
+                        <div class="tamanho-cell">${escapeHtml(item.tamanho)} ${escapeHtml(item.formato)}</div>
+                        <div class="arquivo-cell" title="${escapeHtml(item.nomeArquivo)}">${escapeHtml(item.nomeArquivo)}</div>
+                        <div class="actions-cell">
+                            <button class="btn" data-action="baixar" data-id="${escapeHtml(item.id)}">Baixar Planilha</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function renderReexportList() {
+                const listEl = document.getElementById('reexportList');
+                const emptyEl = document.getElementById('reexportEmpty');
+                const headerEl = document.getElementById('reexportHeaderRow');
+                const footerEl = document.getElementById('reexportFooter');
+                const userEl = document.getElementById('reexportUserLabel');
+                const infoEl = document.getElementById('reexportSelectionInfo');
+
+                userEl.textContent = USUARIO_LOGADO;
+
+                const items = getPlanilhasGeradas();
+
+                if (!items.length) {
+                    listEl.innerHTML = '';
+                    listEl.classList.add('hidden');
+                    headerEl.classList.add('hidden');
+                    footerEl.classList.add('hidden');
+                    emptyEl.classList.remove('hidden');
+                    return;
+                }
+
+                emptyEl.classList.add('hidden');
+                headerEl.classList.remove('hidden');
+                footerEl.classList.remove('hidden');
+                listEl.classList.remove('hidden');
+                listEl.innerHTML = items.map(buildHistoryRowHtml).join('');
+
+                const total = items.length;
+                infoEl.innerHTML = total + ' planilha' + (total > 1 ? 's' : '') + ' no historico';
+            }
+
+            document.getElementById('reexportList').addEventListener('click', function (e) {
+                const btn = e.target.closest('button[data-action="baixar"]');
+                if (!btn) return;
+
+                const id = btn.getAttribute('data-id');
+                const item = getPlanilhasGeradas().find(function (p) { return p.id === id; });
+                if (!item) return;
+
+                // Baixa a planilha no mesmo formato da opcao "Emitir Etiquetas para Datador"
+                downloadSpreadsheet(null, item.etiquetas, item.nomeArquivo);
+
+                modalMessage.innerHTML = 'Planilha <strong>' + escapeHtml(item.nomeArquivo) + '</strong> baixada com sucesso!<br/>Os identificadores SOS foram exportados.';
+                successModal.style.display = 'flex';
+            });
+
+            // ===== EVENTOS =====
+
+            impressoraSelect.addEventListener('change', function () {
+                const isDatador = (this.value === IMPRESSORA_DATADOR);
+
+                if (isDatador) {
+                    discoGroup.style.display = 'block';
+                    datadorInfo.style.display = 'block';
+                    updateTipoEtiquetaOptions(ALL_TYPES);
+                } else {
+                    discoGroup.style.display = 'none';
+                    datadorInfo.style.display = 'none';
+                    updateTipoEtiquetaOptions(ALL_TYPES);
+                    discoSelect.value = '';
+                }
+            });
+
+            tipoEtiqueta.addEventListener('change', function () {
+                updateLacreVisibility();
+            });
+
+            tipoEtiquetaDatador.addEventListener('change', function () {
+                updateLacreDatadorVisibility();
+            });
+
+            btnImprimir.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                if (!impressoraSelect.value) {
+                    alert('Selecione uma Impressora.');
+                    return;
+                }
+
+                if (impressoraSelect.value === IMPRESSORA_DATADOR) {
+                    if (!discoSelect.value) {
+                        alert('Selecione um Disco Removível.');
+                        return;
+                    }
+                }
+
+                if (!tipoEtiqueta.value) {
+                    alert('Selecione um Tipo de Etiqueta.');
+                    return;
+                }
+
+                const qtd = parseInt(quantidadeInput.value, 10);
+                if (isNaN(qtd) || qtd < 1) {
+                    alert('Informe uma quantidade válida (mínimo 1).');
+                    return;
+                }
+
+                modalMessage.innerHTML = 'Etiquetas geradas com sucesso!';
+                successModal.style.display = 'flex';
+            });
+
+            btnVoltar.addEventListener('click', function (e) {
+                e.preventDefault();
+                screenPrint.classList.add('hidden');
+                screenMenu.classList.remove('hidden');
+                setSidebarMode('menu');
+            });
+
+            btnGerarDatador.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                if (!clienteDatador.value) {
+                    alert('Selecione um Cliente.');
+                    return;
+                }
+
+                if (!tipoEtiquetaDatador.value) {
+                    alert('Selecione um Tipo de Etiqueta.');
+                    return;
+                }
+
+                const qtd = parseInt(quantidadeDatador.value, 10);
+                if (isNaN(qtd) || qtd < 1) {
+                    alert('Informe uma quantidade válida (mínimo 1).');
+                    return;
+                }
+
+                if (!discoRemovivelSelect.value) {
+                    alert('Selecione um Disco Removível.');
+                    return;
+                }
+
+                downloadSpreadsheet(discoRemovivelSelect.value);
+
+                modalMessage.innerHTML = 'Planilha gerada com sucesso!<br/>Os identificadores SOS foram salvos no disco removível selecionado.';
+                successModal.style.display = 'flex';
+            });
+
+            btnVoltarDatador.addEventListener('click', function (e) {
+                e.preventDefault();
+                screenDatador.classList.add('hidden');
+                screenMenu.classList.remove('hidden');
+                setSidebarMode('menu');
+            });
+
+            btnVoltarReexportarDatador.addEventListener('click', function (e) {
+                e.preventDefault();
+                screenReexportarDatador.classList.add('hidden');
+                screenMenu.classList.remove('hidden');
+                setSidebarMode('menu');
+            });
+
+            const openPrintButtons = document.querySelectorAll('[data-target="screenPrint"]');
+            openPrintButtons.forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    screenMenu.classList.add('hidden');
+                    screenPrint.classList.remove('hidden');
+                    setSidebarMode('print');
+                    chkLacre.checked = false;
+                    updateLacreVisibility();
+                });
+            });
+
+            const openDatadorButtons = document.querySelectorAll('[data-target="screenDatador"]');
+            openDatadorButtons.forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    screenMenu.classList.add('hidden');
+                    screenDatador.classList.remove('hidden');
+                    setSidebarMode('datador');
+                    clienteDatador.value = '';
+                    tipoEtiquetaDatador.value = '';
+                    quantidadeDatador.value = '1';
+                    discoRemovivelSelect.value = '';
+                    chkLacreDatador.checked = false;
+                    lacreGroupDatador.style.display = 'none';
+                });
+            });
+
+            const openReexportarButtons = document.querySelectorAll('[data-target="screenReexportarDatador"]');
+            openReexportarButtons.forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    screenMenu.classList.add('hidden');
+                    screenReexportarDatador.classList.remove('hidden');
+                    setSidebarMode('menu');
+                    renderReexportList();
+                });
+            });
+
+            const otherMenuButtons = document.querySelectorAll('.menu-btn:not([data-target])');
+            otherMenuButtons.forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                });
+            });
+
+            modalOkBtn.addEventListener('click', function () {
+                successModal.style.display = 'none';
+            });
+
+            successModal.addEventListener('click', function (e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                }
+            });
+
+            // ===== INICIALIZAÇÃO =====
+            impressoraSelect.value = '';
+            discoGroup.style.display = 'none';
+            datadorInfo.style.display = 'none';
+            setSidebarMode('menu');
+            updateTipoEtiquetaOptions(ALL_TYPES);
+            updateLacreVisibility();
+            updateLacreDatadorVisibility();
+
+            console.log('Aplicação inicializada com sucesso.');
+        })();
+    </script>
+
+</body>
+
+</html>

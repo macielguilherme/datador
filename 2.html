@@ -1432,8 +1432,7 @@
                             style="display:flex;flex-direction:column;gap:12px;border-bottom:1px solid #e4e4e7;padding-bottom:12px">
                             <div
                                 style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-                                <h1 style="font-size:22px;font-weight:600;margin:0;color:#09090b">Gerenciar Reimpressão
-                                    de Etiquetas</h1>
+                                <h1 style="font-size:22px;font-weight:600;margin:0;color:#09090b">Gerenciar Etiquetas</h1>
                                 <nav style="font-size:12px;color:#71717a" aria-label="Breadcrumb">
                                     <ol
                                         style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:4px">
@@ -1447,8 +1446,7 @@
                                             <span style="margin:0 4px;color:#a1a1aa">/</span>
                                         </li>
                                         <li style="display:flex;align-items:center;gap:4px">
-                                            <span style="color:#3f3f46;font-weight:500">Gerenciar Reimpressão de
-                                                Etiquetas</span>
+                                            <span style="color:#3f3f46;font-weight:500">Gerenciar Etiquetas</span>
                                         </li>
                                     </ol>
                                 </nav>
@@ -1462,9 +1460,7 @@
                                 Aprovação de Reimpressão de Etiquetas
                             </button>
                             <button type="button" onclick="switchTab('aba-historico')" id="btn-historico"
-                                style="padding:8px 16px;font-size:13px;font-weight:500;color:#71717a;background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer">
-                                Histórico de Etiquetas de Caixas para Datador
-                            </button>
+                                style="padding:8px 16px;font-size:13px;font-weight:500;color:#71717a;background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer">Histórico de Etiquetas de Caixas para Datador</button>
                         </div>
 
                         <!-- ABA 1: Aprovacao de Reimpressao de Etiquetas -->
@@ -1596,8 +1592,7 @@
                         <section id="aba-historico"
                             style="display:none;margin-top:16px;min-width:0;overflow:hidden;border-radius:8px;border:1px solid #e4e4e7;background-color:#ffffff">
                             <div style="border-bottom:1px solid #e4e4e7;padding:16px 20px">
-                                <h2 style="font-size:18px;font-weight:600;color:#09090b;margin:0">Histórico de Criação
-                                    de Etiquetas para Datador</h2>
+                                <h2 style="font-size:18px;font-weight:600;color:#09090b;margin:0">Histórico de Etiquetas de Caixas para Datador</h2>
                             </div>
 
 
@@ -1626,7 +1621,7 @@
                                                 Qtd.</th>
                                             <th
                                                 style="padding:12px 16px;font-weight:600;text-align:center;vertical-align:middle">
-                                                Intervalo SOS</th>
+                                                Intervalo de Identificadores SOS</th>
                                             <th
                                                 style="padding:12px 16px;font-weight:600;text-align:center;vertical-align:middle">
                                                 Arquivo</th>
@@ -1636,7 +1631,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="tbody-historico" style="color:#27272a">
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="20" data-arquivo="Datador_186_000001.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -1657,19 +1652,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 24 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">20</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6000001SOS - CB00213G6000020SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_01042026_1043.XLS</td>
+                                                Datador_186_000001.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_01042026_1043.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000001.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -1694,7 +1685,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="33" data-arquivo="Datador_186_000002.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -1715,19 +1706,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 24 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">33</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6000021SOS - CB00213G6000053SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_01042026_1042.XLS</td>
+                                                Datador_186_000002.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_01042026_1042.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000002.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -1752,7 +1739,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="44" data-arquivo="Datador_186_000003.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -1773,19 +1760,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 23 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">44</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6000054SOS - CB00213G6000097SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_01042026_1041.XLS</td>
+                                                Datador_186_000003.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_01042026_1041.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000003.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -1810,7 +1793,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="657" data-arquivo="Datador_186_000004.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -1831,19 +1814,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 22 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">657</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6000098SOS - CB00213G6000754SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_31032026_1622.XLS</td>
+                                                Datador_186_000004.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_31032026_1622.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000004.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -1868,7 +1847,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="88" data-arquivo="Datador_186_000005.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -1889,19 +1868,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 21 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">88</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6000755SOS - CB00213G6000842SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_31032026_1408.XLS</td>
+                                                Datador_186_000005.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_31032026_1408.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000005.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -1926,7 +1901,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="12" data-arquivo="Datador_186_000006.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -1947,19 +1922,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 20 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">12</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6000843SOS - CB00213G6000854SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_30032026_1155.XLS</td>
+                                                Datador_186_000006.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_30032026_1155.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000006.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -1984,7 +1955,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="99" data-arquivo="Datador_186_000007.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2005,19 +1976,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 19 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">99</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6000855SOS - CB00213G6000953SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_29032026_0933.XLS</td>
+                                                Datador_186_000007.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_29032026_0933.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000007.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2042,7 +2009,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="150" data-arquivo="Datador_186_000008.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2063,19 +2030,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 25 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">150</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6000954SOS - CB00213G6001103SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_28032026_1714.XLS</td>
+                                                Datador_186_000008.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_28032026_1714.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000008.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2100,7 +2063,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="27" data-arquivo="Datador_186_000009.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2121,19 +2084,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 23 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">27</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6001104SOS - CB00213G6001130SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_27032026_1547.XLS</td>
+                                                Datador_186_000009.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_27032026_1547.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000009.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2158,7 +2117,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="51" data-arquivo="Datador_186_000010.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2179,19 +2138,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 22 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">51</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6001131SOS - CB00213G6001181SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_26032026_1321.XLS</td>
+                                                Datador_186_000010.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_26032026_1321.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000010.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2216,7 +2171,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="73" data-arquivo="Datador_186_000011.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2237,19 +2192,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 21 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">73</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6001182SOS - CB00213G6001254SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_25032026_1009.XLS</td>
+                                                Datador_186_000011.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_25032026_1009.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000011.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2274,7 +2225,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="8" data-arquivo="Datador_186_000012.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2295,19 +2246,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 20 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">8</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6001255SOS - CB00213G6001262SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_24032026_1852.XLS</td>
+                                                Datador_186_000012.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_24032026_1852.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000012.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2332,7 +2279,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="300" data-arquivo="Datador_186_000013.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2353,19 +2300,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 24 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">300</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6001263SOS - CB00213G6001562SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_23032026_1638.XLS</td>
+                                                Datador_186_000013.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_23032026_1638.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000013.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2390,7 +2333,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="45" data-arquivo="Datador_186_000014.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2411,19 +2354,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 22 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">45</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6001563SOS - CB00213G6001607SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_22032026_1425.XLS</td>
+                                                Datador_186_000014.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_22032026_1425.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000014.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2448,7 +2387,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="62" data-arquivo="Datador_186_000015.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2469,19 +2408,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 21 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">62</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6001608SOS - CB00213G6001669SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_21032026_1117.XLS</td>
+                                                Datador_186_000015.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_21032026_1117.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000015.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2506,7 +2441,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="19" data-arquivo="Datador_186_000016.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2527,19 +2462,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 20 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">19</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6001670SOS - CB00213G6001688SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_20032026_0904.XLS</td>
+                                                Datador_186_000016.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_20032026_0904.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000016.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2564,7 +2495,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="120" data-arquivo="Datador_186_000017.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2585,19 +2516,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 25 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">120</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6001689SOS - CB00213G6001808SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_19032026_1741.XLS</td>
+                                                Datador_186_000017.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_19032026_1741.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000017.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2622,7 +2549,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="55" data-arquivo="Datador_186_000018.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2643,19 +2570,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 23 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">55</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6001809SOS - CB00213G6001863SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_18032026_1522.XLS</td>
+                                                Datador_186_000018.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_18032026_1522.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000018.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2680,7 +2603,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="41" data-arquivo="Datador_186_000019.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2701,19 +2624,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 22 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">41</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6001864SOS - CB00213G6001904SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_17032026_1255.XLS</td>
+                                                Datador_186_000019.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_17032026_1255.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000019.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2738,7 +2657,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="250" data-arquivo="Datador_186_000020.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2759,19 +2678,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 21 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">250</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6001905SOS - CB00213G6002154SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_16032026_1038.XLS</td>
+                                                Datador_186_000020.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_16032026_1038.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000020.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2796,7 +2711,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="36" data-arquivo="Datador_186_000021.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2817,19 +2732,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 18 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">36</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6002155SOS - CB00213G6002190SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_15032026_0912.XLS</td>
+                                                Datador_186_000021.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_15032026_0912.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000021.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2854,7 +2765,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="77" data-arquivo="Datador_186_000022.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2875,19 +2786,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 19 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">77</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6002191SOS - CB00213G6002267SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_14032026_1647.XLS</td>
+                                                Datador_186_000022.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_14032026_1647.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000022.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2912,7 +2819,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="5" data-arquivo="Datador_186_000023.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2933,19 +2840,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 20 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">5</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6002268SOS - CB00213G6002272SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_13032026_1429.XLS</td>
+                                                Datador_186_000023.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_13032026_1429.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000023.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -2970,7 +2873,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="92" data-arquivo="Datador_186_000024.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -2991,19 +2894,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 21 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">92</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6002273SOS - CB00213G6002364SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_12032026_1155.XLS</td>
+                                                Datador_186_000024.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_12032026_1155.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000024.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -3028,7 +2927,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="180" data-arquivo="Datador_186_000025.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -3049,19 +2948,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 22 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">180</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6002365SOS - CB00213G6002544SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_11032026_0931.XLS</td>
+                                                Datador_186_000025.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_11032026_0931.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000025.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -3086,7 +2981,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="64" data-arquivo="Datador_186_000026.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -3107,19 +3002,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 52 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">64</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6002545SOS - CB00213G6002608SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_10032026_1645.XLS</td>
+                                                Datador_186_000026.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_10032026_1645.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000026.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -3144,7 +3035,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="23" data-arquivo="Datador_186_000027.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -3165,19 +3056,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 48 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">23</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6002609SOS - CB00213G6002631SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_09032026_1422.XLS</td>
+                                                Datador_186_000027.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_09032026_1422.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000027.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -3202,7 +3089,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="47" data-arquivo="Datador_186_000028.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -3223,19 +3110,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 45 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">47</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6002632SOS - CB00213G6002678SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_08032026_1108.XLS</td>
+                                                Datador_186_000028.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_08032026_1108.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000028.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -3260,7 +3143,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="1000" data-arquivo="Datador_186_000029.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -3281,19 +3164,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 42 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">1000</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6002679SOS - CB00213G6003678SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_07032026_0947.XLS</td>
+                                                Datador_186_000029.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_07032026_0947.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000029.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -3318,7 +3197,7 @@
                                                         <span class="tooltip-preto">Baixar XLS</span></button></span>
                                             </td>
                                         </tr>
-                                        <tr style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
+                                        <tr data-qtd="14" data-arquivo="Datador_186_000030.xls" style="height:50px;border-bottom:1px solid #e4e4e7;vertical-align:middle">
                                             <td
                                                 style="padding:0 16px;font-weight:500;color:#09090b;text-align:center;vertical-align:middle">
                                                 MINISTERIO DO TRABALHO E EMPREGO</td>
@@ -3339,19 +3218,15 @@
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
                                                 312 KB</td>
                                             <td
-                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">
-                                                150</td>
-                                            <td
-                                                style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">
-                                                CB00213G60043833SOS - CB00213G60044083SOS</td>
+                                                style="padding:0 16px;text-align:center;vertical-align:middle;color:#52525b">14</td><td data-campo="intervalo-sos" style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle;font-size:11px">CB00213G6003679SOS - CB00213G6003692SOS</td>
                                             <td
                                                 style="padding:0 16px;font-family:monospace;color:#3f3f46;text-align:center;vertical-align:middle">
-                                                Datador_20022026_0815.XLS</td>
+                                                Datador_186_000030.xls</td>
                                             <td
                                                 style="padding:0 16px;text-align:center;vertical-align:middle;white-space:nowrap">
                                                 <span class="btn-baixar-wrap"><button type="button"
                                                         aria-label="Baixar planilha"
-                                                        onclick="baixarPlanilhaAntiga('Datador_20022026_0815.XLS')"
+                                                        onclick="baixarPlanilhaAntiga('Datador_186_000030.xls')"
                                                         style="border-radius:6px;border:1px solid #2563eb;background-color:#eff6ff;padding:6px 12px;font-weight:600;font-size:12px;color:#1d4ed8;cursor:pointer"><svg
                                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300"
                                                             width="18" height="17"
@@ -3385,7 +3260,7 @@
                                 <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
                                     <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#3f3f46">
                                         <label for="input-buscar-hist" style="font-weight:500">Buscar:</label>
-                                        <input id="input-buscar-hist" type="text" placeholder="Pesquisar..."
+                                        <input id="input-buscar-hist" type="text" placeholder="Buscar por etiqueta (CB...SOS) ou texto..."
                                             oninput="filtrarHistorico()"
                                             style="height:34px;border-radius:6px;border:1px solid #e4e4e7;background-color:#ffffff;padding:0 10px;font-size:12px;outline:none;width:200px;box-sizing:border-box">
                                     </div>
@@ -3412,7 +3287,7 @@
                             </div>
                         </section>
 
-                                                <script>
+                        <script>
                             // ============================================================
                             // Abas
                             // ============================================================
@@ -3581,21 +3456,106 @@
                             }
 
                             function aplicarFiltroHist() {
-                                const termo = (document.getElementById('input-buscar-hist')?.value || '').toLowerCase();
-                                const tbody = document.getElementById('tbody-historico');
-                                if (!tbody) return;
-                                const linhas = Array.from(tbody.querySelectorAll('tr'));
-                                let visiveis = 0;
-                                linhas.forEach(function (tr) {
-                                    const match = tr.innerText.toLowerCase().indexOf(termo) !== -1;
-                                    tr.setAttribute('data-match', match ? '1' : '0');
-                                    if (match) visiveis++;
-                                });
-                                const porPagina = obterQtdPorPaginaHist();
-                                histTotalPaginas = Math.max(1, Math.ceil(visiveis / porPagina));
-                                if (histPaginaAtual > histTotalPaginas) histPaginaAtual = histTotalPaginas;
-                                aplicarPaginacaoHistorico();
-                            }
+    const termoOriginal = (document.getElementById('input-buscar-hist')?.value || '').trim();
+    const termo = termoOriginal.toLowerCase();
+    const tbody = document.getElementById('tbody-historico');
+    if (!tbody) return;
+
+    const todasLinhas = Array.from(tbody.querySelectorAll('tr'));
+
+    // ----- Limpa destaques anteriores -----
+    todasLinhas.forEach(function (tr) {
+        const tdIntervalo = tr.querySelector('td[data-campo="intervalo-sos"]');
+        if (tdIntervalo) {
+            // Restaura o texto original guardado
+            if (tdIntervalo.dataset.original) {
+                tdIntervalo.innerHTML = tdIntervalo.dataset.original;
+            }
+        }
+    });
+
+    function mostrarTudo() {
+        for (const tr of todasLinhas) {
+            tr.setAttribute('data-match', '1');
+        }
+    }
+
+    if (termoOriginal === '') {
+        mostrarTudo();
+    } else {
+        const pareceEtiqueta = /^CB[A-Z0-9]*$/i.test(termoOriginal);
+
+        if (pareceEtiqueta) {
+            // Monta a lista de faixas
+            const arquivos = [];
+            let acumulado = 0;
+            for (const tr of todasLinhas) {
+                const qtd = parseInt(tr.getAttribute('data-qtd') || '0', 10);
+                arquivos.push({ inicio: acumulado + 1, fim: acumulado + qtd, tr: tr });
+                acumulado += qtd;
+            }
+
+            let numeroStr = null;
+            const mNumero = termoOriginal.match(/G6?(\d{1,6})/i);
+            if (mNumero) numeroStr = mNumero[1];
+
+            if (numeroStr === null) {
+                mostrarTudo();
+            } else {
+                const minNum = parseInt(numeroStr, 10);
+                const maxNum = parseInt(numeroStr + '9'.repeat(Math.max(0, 6 - numeroStr.length)), 10);
+
+                const alvos = arquivos.filter(function (a) {
+                    return !(a.fim < minNum || a.inicio > maxNum);
+                });
+
+                const setAlvos = new Set(alvos.map(function (a) { return a.tr; }));
+                for (const tr of todasLinhas) {
+                    tr.setAttribute('data-match', setAlvos.has(tr) ? '1' : '0');
+                }
+            }
+
+            // ----- Destaque no intervalo -----
+            // Formato do intervalo: "CB00213G6000001SOS - CB00213G6000020SOS"
+            // Vamos colocar <mark> em volta do trecho que casa com o termo buscado
+            const termoLower = termoOriginal.toLowerCase();
+            todasLinhas.forEach(function (tr) {
+                if (tr.getAttribute('data-match') !== '1') return;
+                const td = tr.querySelector('td[data-campo="intervalo-sos"]');
+                if (!td) return;
+
+                const textoAtual = td.textContent;
+                if (!td.dataset.original) {
+                    td.dataset.original = textoAtual;
+                }
+                const textoBase = td.dataset.original;
+
+                // Escapa caracteres especiais de regex
+                const termoEscapado = termoOriginal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp('(' + termoEscapado + ')', 'gi');
+
+                const htmlDestacado = textoBase.replace(regex, '<mark style="background:#fde047;color:#713f12;padding:0 3px;border-radius:3px;font-weight:700;border-bottom:2px solid #ca8a04;">$1</mark>');
+                td.innerHTML = htmlDestacado;
+            });
+        } else {
+            // ----- Busca por texto normal -----
+            for (const tr of todasLinhas) {
+                const match = tr.innerText.toLowerCase().indexOf(termo) !== -1;
+                tr.setAttribute('data-match', match ? '1' : '0');
+            }
+        }
+    }
+
+    // Recalcula paginação
+    const visiveis = todasLinhas.filter(function (tr) {
+        return tr.getAttribute('data-match') === '1';
+    }).length;
+
+    const porPagina = obterQtdPorPaginaHist();
+    histTotalPaginas = Math.max(1, Math.ceil(visiveis / porPagina));
+    if (histPaginaAtual > histTotalPaginas) histPaginaAtual = histTotalPaginas;
+    aplicarPaginacaoHistorico();
+}
 
                             function aplicarPaginacaoHistorico() {
                                 const tbody = document.getElementById('tbody-historico');
@@ -3624,6 +3584,9 @@
                             }
 
                             // ============================================================
+// Visualizar etiquetas em modal (paginado - 20 por pagina)
+// Recebe: nomeArquivo (string), quantidade (number) OU array de etiquetas
+// ============================================================
                             // Download da planilha
                             // ============================================================
                             function baixarPlanilhaAntiga(nomeArquivo, etiquetas) {
@@ -3682,3 +3645,61 @@
  
  "></iframe>
     <script>(function Ah(n, e, t = !1) { const a = {}; n.currentScript && n.currentScript.remove(), function n(t) { const o = t.getAttribute(e); o && (a[o] = t); Array.from(t.children).forEach(n) }(n.body), Object.keys(a).forEach(n => { const e = a[n], t = n.split("."); if (t.length > 1) { const n = t.slice(0, -1).join("."), o = a[n]; o && e.parentElement !== o && !e.contains(o) && o.appendChild(e) } }), t || n.querySelectorAll("[" + e + "]").forEach(n => n.removeAttribute(e)) })(document, "data-sf-nesting-track-id");</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
